@@ -1,0 +1,118 @@
+.restaurant-card {
+  width: 300px;
+  background: #f4f4f4;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-3px);
+}
+
+.restaurant-header {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.restaurant-header-backgroundImg {
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 100%;
+  filter: brightness(0.5);
+}
+
+.restaurant-header-content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  padding: 20px;
+}
+
+.restaurant-header h2 {
+  font-size: 1.6em;
+  font-weight: 600;
+}
+
+.restaurant-header .location {
+  font-size: 0.9em;
+  opacity: 0.9;
+  margin-top: 5px;
+}
+
+.visits {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.visit-card {
+  border-left: 4px solid #f4a261;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.visit-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.visit-count {
+  font-weight: 600;
+  color: #d94f4f;
+}
+
+.visit-date {
+  font-size: 0.85em;
+  color: #666;
+}
+
+.members ul {
+  list-style: none;
+  display: flex;
+  justify-content: end;
+
+  position: relative;
+  height: 32px;
+}
+
+.member-item {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  border: 1.2px solid #444444;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+}
+
+.member-item:last-child {
+  border-bottom: none;
+}
+
+.member-item span {
+  font-size: 0.9em;
+}
+.member-avatar {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+}
+
+.rating {
+  color: #f4a261;
+  font-size: 1.1em;
+}

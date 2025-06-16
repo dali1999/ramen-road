@@ -1,0 +1,81 @@
+.container {
+  max-width: 1980px;
+  min-width: 720px;
+  padding: 20px 0;
+  width: 96vw;
+}
+
+.header {
+  text-align: center;
+  padding: 20px 0;
+  background: rgba(0, 0, 0, 0.4);
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.header p {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.restaurant-wrapper {
+  display: flex;
+  align-items: start;
+}
+
+.restaurant-wrapper > div:first-child {
+  flex: 2;
+}
+
+.restaurant-wrapper > div:last-child {
+  flex: 1;
+}
+
+.restaurant-grid-title {
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+}
+.restaurant-grid-title.visited h2 {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: white;
+  background-color: rgb(255, 103, 103);
+  width: 300px;
+  border-radius: 8px;
+  padding: 8px 0;
+  margin: 20px 0;
+}
+.restaurant-grid-title.planned h2 {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: white;
+  background-color: rgb(220, 141, 57);
+  width: 300px;
+  border-radius: 8px;
+  padding: 8px 0;
+  margin: 20px 0;
+}
+
+.restaurant-grid {
+  display: grid;
+  gap: 30px;
+  justify-content: center;
+}
+
+.restaurant-grid.visited {
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+  grid-template-columns: repeat(auto-fill, 300px);
+  padding: 0 20px;
+}
+
+.restaurant-grid.planned {
+  grid-template-columns: repeat(1, 300px);
+}

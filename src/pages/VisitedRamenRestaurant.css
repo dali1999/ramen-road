@@ -1,0 +1,135 @@
+.visited-restaurant-container {
+  max-width: 1200px;
+  width: 80vw;
+
+  padding: 60px 0;
+}
+
+.visited-restaurant-info {
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.visited-restaurant-info-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+}
+
+.visited-restaurant-info-name {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.visited-restaurant-info-rating {
+  font-weight: 600;
+  color: #f4a261;
+}
+
+/* 음식점 이미지 */
+.visited-restaurant-info-images {
+  padding: 12px;
+  display: flex;
+  overflow-x: scroll;
+  gap: 10px;
+}
+
+.visited-restaurant-main-image {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.visited-count-list {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+.visited-count-item {
+  width: 400px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+}
+
+.visited-count-item-title {
+  font-weight: 600;
+  color: #d94f4f;
+  margin-bottom: 6px;
+}
+
+.visited-count-member-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.visited-count-member-item {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  padding: 6px;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.visited-count-member-item:last-child {
+  border-bottom: 0px solid rgba(0, 0, 0, 0.1);
+}
+
+.visited-count-member-item-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  object-fit: cover;
+  margin-top: 2px;
+}
+
+.visited-count-member-item-review {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 84%;
+}
+
+.visited-count-member-item-review div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 0 6px;
+}
+
+.visited-count-member-item-review-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4f4f4f;
+}
+
+.visited-count-member-item-review-text {
+  width: 206px;
+  font-size: 10px;
+  text-align: left;
+}
+
+.visited-count-member-item-review-rating {
+  width: 380px;
+  color: #f4a261;
+  font-size: 16px;
+  text-align: right;
+}
+
+.visited-count-member-item-review-rating.none {
+  color: #c4c4c4;
+  font-size: 12px;
+  text-align: right;
+  font-weight: 600;
+}

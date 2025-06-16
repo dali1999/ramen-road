@@ -1,0 +1,80 @@
+.recommended-info {
+  padding: 15px;
+}
+
+/* .visit-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.visit-count {
+  font-weight: 600;
+  color: #d94f4f;
+}
+
+.visit-date {
+  font-size: 0.85em;
+  color: #666;
+} */
+
+.recommended-member {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  overflow-x: hidden;
+}
+
+.recommended-member-image-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1.2px solid #555;
+  border-radius: 10%;
+  overflow: hidden;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+.recommended-member-image-wrapper img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.recommended-text {
+  color: #444;
+  font-size: 16px;
+  font-weight: 600;
+
+  flex: 1;
+  width: fit-content;
+  margin-left: 12px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 최대 줄 수: 2 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+
+  /* animation: marquee 6s linear infinite; */
+}
+
+/* ✨ @keyframes 정의 ✨ */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%); /* 시작 위치: 0% (오른쪽 정렬 상태) */
+  }
+  100% {
+    transform: translateX(calc(-100% - 20px)); /* 텍스트가 왼쪽으로 완전히 사라지도록 이동 (20px은 추가 여백) */
+  }
+}
+
+.recommended-text.no-scroll {
+  animation: none; /* 애니메이션 제거 */
+  text-overflow: ellipsis; /* 짧을 때는 ...으로 표시 */
+}
