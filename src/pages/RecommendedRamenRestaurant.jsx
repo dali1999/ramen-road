@@ -1,12 +1,13 @@
 import { useParams } from 'react-router-dom';
-import './VisitedRamenRestaurant.css';
+import './RecommendedRamenRestaurant.css';
 import { MEMBER, RAMEN_DATA } from '../ramenData';
-import { useVisitedRamenRestaurant } from '../hooks/useRamen';
+import { usePlannedRamenRestaurant } from '../hooks/useRamen';
 
-const VisitedRamenRestaurant = () => {
+const RecommendedRamenRestaurant = () => {
   const { id } = useParams();
 
-  const { data: visitedRamenItem, isLoading, error } = useVisitedRamenRestaurant(id);
+  const { data: visitedRamenItem, isLoading, error } = usePlannedRamenRestaurant(id);
+  console.log(visitedRamenItem);
 
   if (isLoading) return <div className='loading-message'>라멘집 정보를 불러오는 중...</div>;
   if (error) return <div className='error-message'>오류 발생: {error.message}</div>;
@@ -27,7 +28,7 @@ const VisitedRamenRestaurant = () => {
       </div>
 
       {/* 방문회차별 멤버 및 리뷰 */}
-      <ul className='visited-count-list'>
+      {/* <ul className='visited-count-list'>
         {visitedRamenItem.visits.map((visit, idx) => (
           <li key={`${idx}_${visit.visit_date}`} className='visited-count-item'>
             <div className='visited-count-item-title'>#{visit.visit_count}차 습격</div>
@@ -56,9 +57,9 @@ const VisitedRamenRestaurant = () => {
             </ul>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };
 
-export default VisitedRamenRestaurant;
+export default RecommendedRamenRestaurant;

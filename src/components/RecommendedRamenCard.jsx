@@ -4,11 +4,13 @@ import { MEMBER } from '../ramenData';
 import './RecommendedRamenCard.css';
 
 const RecommendedRamenCard = ({ restaurant }) => {
+  console.log(restaurant);
   const navigate = useNavigate();
 
   const handleCardBannerClick = (id) => {
-    navigate(`/restaurant/${id}`);
+    navigate(`/recommended/${id}`);
   };
+
   return (
     <div className='restaurant-card'>
       <div className='restaurant-header' onClick={() => handleCardBannerClick(restaurant._id)}>
@@ -27,10 +29,10 @@ const RecommendedRamenCard = ({ restaurant }) => {
 
         <div className='recommended-member'>
           <li className='recommended-member-image-wrapper'>
-            <img src={MEMBER['상혁']?.imageUrl} />
+            <img src={MEMBER[restaurant.recommendedBy]?.imageUrl} />
           </li>
 
-          <div className='recommended-text'>류진을 추천하는 이유는 걍 류진 미만 잡임 가서 잡숴봐~ 딴거 못먹어</div>
+          <div className='recommended-text'>{restaurant.recommendationComment}</div>
         </div>
       </div>
     </div>

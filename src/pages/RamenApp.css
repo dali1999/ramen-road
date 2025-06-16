@@ -45,6 +45,7 @@
   display: flex;
   justify-content: center;
 }
+
 .restaurant-grid-title.visited h2 {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   color: white;
@@ -53,21 +54,33 @@
   border-radius: 8px;
   padding: 8px 0;
   margin: 20px 0;
+  cursor: pointer;
 }
+
+.restaurant-grid-title.visited h2:hover {
+  background-color: rgb(241, 76, 76);
+}
+
 .restaurant-grid-title.planned h2 {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   color: white;
-  background-color: rgb(220, 141, 57);
+  background-color: rgb(235, 163, 86);
   width: 300px;
   border-radius: 8px;
   padding: 8px 0;
   margin: 20px 0;
+  cursor: pointer;
+}
+
+.restaurant-grid-title.planned h2:hover {
+  background-color: rgb(220, 141, 57);
 }
 
 .restaurant-grid {
   display: grid;
   gap: 30px;
   justify-content: center;
+  align-items: start;
 }
 
 .restaurant-grid.visited {

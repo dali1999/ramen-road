@@ -2,15 +2,28 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MEMBER } from '../ramenData';
 import './VisitedRamenCard.css';
+import { useDeleteVisitedRamenRestaurant } from '../hooks/useRamen';
 
 const VisitedRamenCard = ({ restaurant }) => {
   const navigate = useNavigate();
+  const deletePlannedRamenMutation = useDeleteVisitedRamenRestaurant();
+
+  const handleDeleteClick = () => {
+    if (window.confirm(`${restaurant.name}을(를) 정말 삭제하시겠습니까?`)) {
+      deletePlannedRamenMutation.mutate(restaurant._id);
+    }
+  };
 
   const handleCardBannerClick = (id) => {
     navigate(`/restaurant/${id}`);
   };
+
   return (
     <div className='restaurant-card'>
+      <button className='delete-button' onClick={handleDeleteClick} disabled={deletePlannedRamenMutation.isPending}>
+        {deletePlannedRamenMutation.isPending ? '...' : 'DEL'}
+      </button>
+
       <div className='restaurant-header' onClick={() => handleCardBannerClick(restaurant._id)}>
         <img src={restaurant.bannerImageUrl} className='restaurant-header-backgroundImg' draggable='false' />
         <div className='restaurant-header-content'>
@@ -35,10 +48,11 @@ const VisitedRamenCard = ({ restaurant }) => {
                   </li>
                 ))}
 
-                <div className='rating'>
-                  {'★'.repeat(4)}
-                  {'☆'.repeat(5 - 4)}
-                </div>
+                {restaurant.ratingAverage > 0 ? (
+                  <div className='rating'>{restaurant.ratingAverage}</div>
+                ) : (
+                  <div className='noRating'>별점 없음</div>
+                )}
               </ul>
             </div>
           </div>
