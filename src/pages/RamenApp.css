@@ -1,30 +1,54 @@
 .container {
   max-width: 1980px;
   min-width: 720px;
-  padding: 20px 0;
+
   width: 96vw;
 }
 
 .header {
   text-align: center;
-  padding: 20px 0;
-  background: rgba(0, 0, 0, 0.4);
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   background-size: cover;
   background-position: center;
-  color: #fff;
-  border-radius: 12px;
+  color: #4c4c4c;
+
   margin-bottom: 30px;
+  position: relative;
 }
 
 .header h1 {
   font-size: 36px;
   font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .header p {
   font-size: 18px;
   margin-top: 10px;
+}
+
+.auth-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: white;
+  font-weight: 600;
+  background-color: #adadad;
+  width: fit-content;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.auth-button:hover {
+  background-color: #777777;
+}
+
+.auth-button.register {
+  right: 100px;
 }
 
 .restaurant-wrapper {

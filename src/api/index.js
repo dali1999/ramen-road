@@ -2,12 +2,31 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:3000';
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
+api.interceptors.request.use(
+  (config) => {
+    // 1. localStorage에서 JWT 토큰을 가져옵니다.
+    // 'token'은 로그인 성공 시 `localStorage.setItem('token', data.token)`으로 저장한 키입니다.
+    const token = localStorage.getItem('token');
+
+    // 2. 토큰이 존재하면 요청 헤더에 'Authorization' 필드를 추가합니다.
+    // 'Bearer '는 JWT 토큰을 전송할 때 사용되는 표준 접두사입니다.
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
 
 // --- API 함수 정의 ---
 
@@ -50,7 +69,8 @@ export const updateMemberRating = async (restaurantId, visitCount, memberName, p
 // 7. 방문 예정 라멘집 추가
 export const addPlannedRamen = async (payload) => {
   const response = await api.post('/api/planned-ramen', payload);
-  return response.data.plannedRamen;
+  console.log(response.data);
+  return response.data;
 };
 
 // 8. 모든 방문 예정 라멘집 조회
@@ -59,19 +79,19 @@ export const getPlannedRamenRestaurants = async () => {
   return response.data;
 };
 
-// 9. 모든 방문 예정 라멘집 조회
+// 9. 방문 예정 라멘집 조회 (id)
 export const getPlannedRamenRestaurantById = async (restaurantId) => {
   const response = await api.get(`/api/planned-ramen/${restaurantId}`);
   return response.data;
 };
 
-// 10. 모든 방문 예정 라멘집 조회
+// 10. 라멘집 삭제 (id)
 export const deleteVisitedRamenRestaurantById = async (restaurantId) => {
   const response = await api.delete(`/api/visited-ramen/${restaurantId}`);
   return response.data;
 };
 
-// 11. 모든 방문 예정 라멘집 조회
+// 11. 방문 예정 라멘집 삭제 (id)
 export const deletePlannedRamenRestaurantById = async (restaurantId) => {
   const response = await api.delete(`/api/planned-ramen/${restaurantId}`);
   return response.data;

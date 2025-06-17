@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useAddPlannedRamen, useAddVisitedRamen, useMembers } from '../hooks/useRamen';
+import { useAddPlannedRamen, useMembers } from '../hooks/useRamen';
 import './AddVisitedRamenModal.css';
 
 const AddPlannedRamenModal = ({ isOpen, onClose }) => {
-  const { data: members, isLoading: isLoadingMembers, error: membersError } = useMembers();
+  // const { data: members, isLoading: isLoadingMembers, error: membersError } = useMembers();
   const addPlannedRamenMutation = useAddPlannedRamen();
 
   const DEFAULT_BANNER_IMAGE =
@@ -13,15 +13,14 @@ const AddPlannedRamenModal = ({ isOpen, onClose }) => {
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
   const [bannerImageUrl, setBannerImageUrl] = useState('');
-  const [recommendedBy, setRecommendedBy] = useState(''); // 선택된 멤버들의 이름
   const [recommendationComment, setRecommendationComment] = useState(''); // 선택된 멤버들의 이름
 
   if (!isOpen) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !location || !recommendedBy) {
-      alert('라멘집 이름, 위치, 추천인은 필수입니다!');
+    if (!name || !location) {
+      alert('라멘집 이름과 위치는 필수입니다!');
       return;
     }
     const finalBannerImageUrl = bannerImageUrl.trim() === '' ? DEFAULT_BANNER_IMAGE : bannerImageUrl;
@@ -30,7 +29,6 @@ const AddPlannedRamenModal = ({ isOpen, onClose }) => {
         name,
         bannerImageUrl: finalBannerImageUrl,
         location,
-        recommendedBy,
         recommendationComment,
       },
       {
@@ -39,7 +37,6 @@ const AddPlannedRamenModal = ({ isOpen, onClose }) => {
           setName('');
           setLocation('');
           setBannerImageUrl('');
-          setRecommendedBy('');
           setRecommendationComment('');
           onClose(); // 모달 닫기
         },
@@ -50,20 +47,20 @@ const AddPlannedRamenModal = ({ isOpen, onClose }) => {
     );
   };
 
-  if (isLoadingMembers)
-    return (
-      <div className='modal-overlay'>
-        <div className='modal-content'>멤버 목록 로딩 중...</div>
-      </div>
-    );
-  if (membersError)
-    return (
-      <div className='modal-overlay'>
-        <div className='modal-content' style={{ color: 'red' }}>
-          멤버 목록 로드 오류: {membersError.message}
-        </div>
-      </div>
-    );
+  // if (isLoadingMembers)
+  //   return (
+  //     <div className='modal-overlay'>
+  //       <div className='modal-content'>멤버 목록 로딩 중...</div>
+  //     </div>
+  //   );
+  // if (membersError)
+  //   return (
+  //     <div className='modal-overlay'>
+  //       <div className='modal-content' style={{ color: 'red' }}>
+  //         멤버 목록 로드 오류: {membersError.message}
+  //       </div>
+  //     </div>
+  //   );
 
   return (
     <div className='modal-overlay' onClick={onClose}>
@@ -92,24 +89,6 @@ const AddPlannedRamenModal = ({ isOpen, onClose }) => {
           </div>
 
           <div className='form-group'>
-            <label htmlFor='recommendedBy'>추천 멤버:</label>
-            <select
-              id='recommendedBy'
-              value={recommendedBy}
-              onChange={(e) => setRecommendedBy(e.target.value)}
-              required
-              className='member-select'
-            >
-              <option value=''>추천 멤버를 선택하세요</option>
-              {members?.map((member) => (
-                <option key={member._id} value={member.name}>
-                  {member.name} ({member.nickname})
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className='form-group'>
             <label htmlFor='recommendationComment'>추천하는 이유:</label>
             <input
               type='text'
@@ -117,7 +96,6 @@ const AddPlannedRamenModal = ({ isOpen, onClose }) => {
               value={recommendationComment}
               onChange={(e) => setRecommendationComment(e.target.value)}
               required
-              placeholder='이미지가 없을 시 기본 이미지가 들어갑니다'
             />
           </div>
 

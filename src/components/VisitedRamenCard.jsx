@@ -3,14 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { MEMBER } from '../ramenData';
 import './VisitedRamenCard.css';
 import { useDeleteVisitedRamenRestaurant } from '../hooks/useRamen';
+import CardTags from './CardTags';
 
 const VisitedRamenCard = ({ restaurant }) => {
   const navigate = useNavigate();
-  const deletePlannedRamenMutation = useDeleteVisitedRamenRestaurant();
+  const deleteVisitedRamenRestaurantById = useDeleteVisitedRamenRestaurant();
 
   const handleDeleteClick = () => {
     if (window.confirm(`${restaurant.name}을(를) 정말 삭제하시겠습니까?`)) {
-      deletePlannedRamenMutation.mutate(restaurant._id);
+      deleteVisitedRamenRestaurantById.mutate(restaurant._id);
     }
   };
 
@@ -20,9 +21,9 @@ const VisitedRamenCard = ({ restaurant }) => {
 
   return (
     <div className='restaurant-card'>
-      <button className='delete-button' onClick={handleDeleteClick} disabled={deletePlannedRamenMutation.isPending}>
-        {deletePlannedRamenMutation.isPending ? '...' : 'DEL'}
-      </button>
+      <div className='delete-button' onClick={handleDeleteClick}>
+        ...
+      </div>
 
       <div className='restaurant-header' onClick={() => handleCardBannerClick(restaurant._id)}>
         <img src={restaurant.bannerImageUrl} className='restaurant-header-backgroundImg' draggable='false' />
@@ -31,6 +32,8 @@ const VisitedRamenCard = ({ restaurant }) => {
           <p className='location'>{restaurant.location}</p>
         </div>
       </div>
+
+      <CardTags />
 
       <div className='visits'>
         {restaurant.visits.map((visit) => (

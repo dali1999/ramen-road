@@ -1,11 +1,20 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MEMBER } from '../ramenData';
 import './RecommendedRamenCard.css';
+import { useDeletePlannedRamenRestaurant } from '../hooks/useRamen';
 
 const RecommendedRamenCard = ({ restaurant }) => {
-  console.log(restaurant);
   const navigate = useNavigate();
+  const deletePlannedRamenMutation = useDeletePlannedRamenRestaurant();
+  const recommender = restaurant.recommendedBy;
+
+  console.log(recommender);
+
+  const handleDeleteClick = () => {
+    if (window.confirm(`${restaurant.name}을(를) 정말 삭제하시겠습니까?`)) {
+      deletePlannedRamenMutation.mutate(restaurant._id);
+    }
+  };
 
   const handleCardBannerClick = (id) => {
     navigate(`/recommended/${id}`);
@@ -13,6 +22,9 @@ const RecommendedRamenCard = ({ restaurant }) => {
 
   return (
     <div className='restaurant-card'>
+      <div className='delete-button' onClick={handleDeleteClick}>
+        ...
+      </div>
       <div className='restaurant-header' onClick={() => handleCardBannerClick(restaurant._id)}>
         <img src={restaurant.bannerImageUrl} className='restaurant-header-backgroundImg' draggable='false' />
         <div className='restaurant-header-content'>
@@ -22,17 +34,15 @@ const RecommendedRamenCard = ({ restaurant }) => {
       </div>
 
       <div className='recommended-info'>
-        {/* <div className='visit-info'>
-          <span className='visit-count'>#{1}차 습격</span>
-          <span className='visit-date'>123123</span>
-        </div> */}
-
         <div className='recommended-member'>
           <li className='recommended-member-image-wrapper'>
-            <img src={MEMBER[restaurant.recommendedBy]?.imageUrl} />
+            <img src={recommender.imageUrl} />
           </li>
 
-          <div className='recommended-text'>{restaurant.recommendationComment}</div>
+          <div className='recommended-text-wrapper'>
+            <div className='recommended-member-name'>{recommender.name}의 추천</div>
+            <div className='recommended-text'>{restaurant.recommendationComment}</div>
+          </div>
         </div>
       </div>
     </div>
