@@ -5,6 +5,8 @@ import './VisitedRamenCard.css';
 import { useDeleteVisitedRamenRestaurant } from '../hooks/useRamen';
 import CardTags from './CardTags';
 
+const API_BASE_URL = 'http://localhost:3000';
+
 const VisitedRamenCard = ({ restaurant }) => {
   const navigate = useNavigate();
   const deleteVisitedRamenRestaurantById = useDeleteVisitedRamenRestaurant();
@@ -47,7 +49,7 @@ const VisitedRamenCard = ({ restaurant }) => {
               <ul>
                 {visit.members.map((member, idx) => (
                   <li key={member.name} className='member-item' style={{ zIndex: idx, left: `${idx * 22}px` }}>
-                    <img src={MEMBER[member.name]?.imageUrl} alt={member.name} className='member-avatar' />
+                    <img src={`${API_BASE_URL}${member.imageUrl}`} alt={member.name} className='member-avatar' />
                   </li>
                 ))}
 

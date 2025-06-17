@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import './RecommendedRamenCard.css';
 import { useDeletePlannedRamenRestaurant } from '../hooks/useRamen';
 
+const API_BASE_URL = 'http://localhost:3000';
+
 const RecommendedRamenCard = ({ restaurant }) => {
   const navigate = useNavigate();
   const deletePlannedRamenMutation = useDeletePlannedRamenRestaurant();
   const recommender = restaurant.recommendedBy;
-
-  console.log(recommender);
 
   const handleDeleteClick = () => {
     if (window.confirm(`${restaurant.name}을(를) 정말 삭제하시겠습니까?`)) {
@@ -36,7 +36,7 @@ const RecommendedRamenCard = ({ restaurant }) => {
       <div className='recommended-info'>
         <div className='recommended-member'>
           <li className='recommended-member-image-wrapper'>
-            <img src={recommender.imageUrl} />
+            <img src={`${API_BASE_URL}${recommender.imageUrl}`} alt='추천인 이미지' />
           </li>
 
           <div className='recommended-text-wrapper'>

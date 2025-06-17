@@ -13,8 +13,6 @@ const RegisterPage = () => {
   const [nickname, setNickname] = useState('');
   const [imageFile, setImageFile] = useState(null);
 
-  console.log(imageFile);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -25,12 +23,9 @@ const RegisterPage = () => {
     formData.append('nickname', nickname);
 
     if (imageFile) {
-      formData.append('profileImage', imageFile); // 'profileImage'는 백엔드의 Multer 설정에서 사용할 필드 이름입니다.
+      formData.append('profileImage', imageFile);
     }
 
-    // 회원가입 함수 호출
-    // `register` 함수는 이제 `FormData` 객체를 인자로 받을 수 있도록 수정해야 합니다.
-    // (아래 `src/api/index.ts` 수정에서 다룰 예정입니다.)
     register(formData, {
       onSuccess: () => {
         alert('맨즈가 되셨습니다! 로그인해 주세요. 🥳');
@@ -76,9 +71,15 @@ const RegisterPage = () => {
           {/* 이미지 파일 업로드 필드 */}
           <div className='form-group'>
             <label htmlFor='profileImage'>프로필 이미지:</label>
-            <input type='file' id='profileImage' accept='image/*' onChange={(e) => setImageFile(e.target.files[0])} required />
-            {/* <small>JPG, PNG, GIF 이미지 파일 (최대 2MB)</small> */}
-            {imageFile && <p style={{ fontSize: '12px', color: '#666' }}>선택된 파일: {imageFile.name}</p>}{' '}
+            <input
+              type='file'
+              id='profileImage'
+              name='profileImage'
+              accept='image/*'
+              onChange={(e) => setImageFile(e.target.files[0])}
+              required
+            />
+            {imageFile && <p style={{ fontSize: '12px', color: '#666' }}>선택된 파일: {imageFile.name}</p>}
           </div>
 
           <button type='submit' disabled={isLoadingAuth}>

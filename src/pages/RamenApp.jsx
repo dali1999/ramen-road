@@ -18,10 +18,6 @@ const RamenApp = () => {
   const [isVisitedModalOpen, setIsVisitedModalOpen] = useState(false);
   const [isPlannedModalOpen, setIsPlannedModalOpen] = useState(false);
 
-  if (user) {
-    console.log('imageUrl: ', user.member.imageUrl);
-  }
-
   const handleLoginButtonClick = () => {
     navigate(`/login`);
   };

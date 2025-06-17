@@ -1,4 +1,10 @@
-import { api } from '.';
+import axios from 'axios';
+
+const API_BASE_URL = 'http://localhost:3000';
+
+export const api = axios.create({
+  baseURL: API_BASE_URL,
+});
 
 // 1. 회원가입
 export const register = async (payload) => {

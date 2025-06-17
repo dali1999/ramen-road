@@ -26,7 +26,6 @@ const AddVisitedRamenModal = ({ isOpen, onClose }) => {
     }
     const membersPayload = selectedMembers.map((memberName) => ({ name: memberName }));
     const finalBannerImageUrl = bannerImageUrl.trim() === '' ? DEFAULT_BANNER_IMAGE : bannerImageUrl;
-    console.log(bannerImageUrl, finalBannerImageUrl);
     addVisitedRamenMutation.mutate(
       {
         name,
