@@ -8,13 +8,17 @@
   transition: transform 0.3s ease;
   display: flex;
   position: relative;
+  cursor: pointer;
+}
+
+.recommended-restaurant-card:hover {
+  transform: translateY(-4px);
 }
 
 .recommended-restaurant-backgroundImg-wrapper {
   width: 38%;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
   height: 200px;
   background-color: #e4e4e4;
 }

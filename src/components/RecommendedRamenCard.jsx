@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './RecommendedRamenCard.css';
 import { useDeletePlannedRamenRestaurant } from '../hooks/useRamen';
 
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 const RecommendedRamenCard = ({ restaurant }) => {
   const navigate = useNavigate();
@@ -16,16 +16,16 @@ const RecommendedRamenCard = ({ restaurant }) => {
     }
   };
 
-  const handleCardBannerClick = (id) => {
+  const handleCardClick = (id) => {
     navigate(`/recommended/${id}`);
   };
 
   return (
-    <div className='recommended-restaurant-card'>
+    <div className='recommended-restaurant-card' onClick={() => handleCardClick(restaurant._id)}>
       <div className='delete-button' onClick={handleDeleteClick}>
         ...
       </div>
-      <div className='recommended-restaurant-backgroundImg-wrapper' onClick={() => handleCardBannerClick(restaurant._id)}>
+      <div className='recommended-restaurant-backgroundImg-wrapper'>
         <img src={restaurant.bannerImageUrl} className='recommended-restaurant-backgroundImg' draggable='false' />
       </div>
 

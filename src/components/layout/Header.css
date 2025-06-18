@@ -1,0 +1,64 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  border-radius: 0 0 16px 16px;
+
+  background-color: #e7603e;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 1000;
+}
+
+.header h1 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.header p {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.auth-button {
+  position: absolute;
+  right: 20px;
+  color: white;
+  font-weight: 600;
+  background-color: #adadad;
+  width: fit-content;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.auth-button.register {
+  right: 100px;
+  background-color: #ff865d;
+  border: 2px solid rgb(186, 77, 18);
+}
+
+.auth-button.login {
+  background-color: #ff865d;
+  border: 2px solid rgb(186, 77, 18);
+}
+
+.auth-button.logout {
+  background-color: #ff865d;
+  border: 2px solid rgb(186, 77, 18);
+}
+
+.auth-button:hover {
+  background-color: #e17956;
+  color: rgba(255, 255, 255, 0.862);
+}

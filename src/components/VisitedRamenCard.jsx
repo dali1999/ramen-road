@@ -5,11 +5,10 @@ import './VisitedRamenCard.css';
 import { useDeleteVisitedRamenRestaurant } from '../hooks/useRamen';
 import CardTags from './CardTags';
 
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 const VisitedRamenCard = ({ restaurant }) => {
   const navigate = useNavigate();
-  console.log(restaurant);
   const deleteVisitedRamenRestaurantById = useDeleteVisitedRamenRestaurant();
 
   const handleDeleteClick = () => {
@@ -18,17 +17,17 @@ const VisitedRamenCard = ({ restaurant }) => {
     }
   };
 
-  const handleCardBannerClick = (id) => {
+  const handleCardClick = (id) => {
     navigate(`/restaurant/${id}`);
   };
 
   return (
-    <div className='restaurant-card'>
+    <div className='restaurant-card' onClick={() => handleCardClick(restaurant._id)}>
       <div className='delete-button' onClick={handleDeleteClick}>
         ...
       </div>
 
-      <div className='restaurant-backgroundImg-wrapper' onClick={() => handleCardBannerClick(restaurant._id)}>
+      <div className='restaurant-backgroundImg-wrapper'>
         <img src={restaurant.bannerImageUrl} className='restaurant-backgroundImg' draggable='false' />
       </div>
 

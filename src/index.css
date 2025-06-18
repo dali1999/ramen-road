@@ -22,6 +22,7 @@ body {
   min-height: 100vh;
   background-color: #f8e5cc;
   color: #4c4c4c;
+  position: relative;
 }
 
 h1 {

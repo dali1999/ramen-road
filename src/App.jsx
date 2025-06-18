@@ -9,6 +9,8 @@ import LoginPage from './pages/LoginPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import RegisterPage from './pages/RegisterPage.jsx';
+import Header from './components/layout/Header.jsx';
+import Footer from './components/layout/Footer.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,15 +34,21 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <BrowserRouter>
-          <Routes>
-            <Route>
-              <Route path='/' element={<RamenApp />} />
-              <Route path='/login' element={<LoginPage />} />
-              <Route path='/register' element={<RegisterPage />} />
-              <Route path='/restaurant/:id' element={<VisitedRamenRestaurant />} />
-              <Route path='/recommended/:id' element={<RecommendedRamenRestaurant />} />
-            </Route>
-          </Routes>
+          <div className='app'>
+            <Header />
+            <main className='content'>
+              <Routes>
+                <Route>
+                  <Route path='/' element={<RamenApp />} />
+                  <Route path='/login' element={<LoginPage />} />
+                  <Route path='/register' element={<RegisterPage />} />
+                  <Route path='/restaurant/:id' element={<VisitedRamenRestaurant />} />
+                  <Route path='/recommended/:id' element={<RecommendedRamenRestaurant />} />
+                </Route>
+              </Routes>
+            </main>
+            <Footer />
+          </div>
         </BrowserRouter>
       </AuthProvider>
       <ReactQueryDevtools initialIsOpen={false} />
