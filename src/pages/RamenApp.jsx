@@ -36,7 +36,12 @@ const RamenApp = () => {
           </div>
           <div className='restaurant-grid planned'>
             {RecommendedRamenList?.map((restaurant, idx) => (
-              <RecommendedRamenCard restaurant={restaurant} key={`${restaurant.id}_${idx}`} />
+              <>
+                <RecommendedRamenCard restaurant={restaurant} key={`${restaurant.id}_${idx}`} />
+                <RecommendedRamenCard restaurant={restaurant} key={`${restaurant.id}_${idx}`} />
+                <RecommendedRamenCard restaurant={restaurant} key={`${restaurant.id}_${idx}`} />
+                <RecommendedRamenCard restaurant={restaurant} key={`${restaurant.id}_${idx}`} />
+              </>
             ))}
           </div>
         </div>
