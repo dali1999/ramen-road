@@ -51,9 +51,9 @@ const RamenApp = () => {
       </header>
 
       <div className='restaurant-wrapper'>
-        <div>
+        <div className='restaurant-section'>
           <div className='restaurant-grid-title visited'>
-            <h2 onClick={() => setIsVisitedModalOpen(true)}>라멘로드</h2>
+            <h2 onClick={() => setIsVisitedModalOpen(true)}>🍜 라멘로드</h2>
           </div>
           <div className='restaurant-grid visited'>
             {visitedRamenList?.map((restaurant, idx) => (
@@ -62,13 +62,17 @@ const RamenApp = () => {
           </div>
         </div>
 
-        <div>
+        <div className='restaurant-section'>
           <div className='restaurant-grid-title planned'>
             <h2 onClick={() => setIsPlannedModalOpen(true)}>추천 라멘집 </h2>
           </div>
           <div className='restaurant-grid planned'>
             {RecommendedRamenList?.map((restaurant, idx) => (
-              <RecommendedRamenCard restaurant={restaurant} key={`${restaurant.id}_${idx}`} />
+              <>
+                <RecommendedRamenCard restaurant={restaurant} key={`${restaurant.id}_${idx}`} />
+                <RecommendedRamenCard restaurant={restaurant} key={`${restaurant.id}_${idx}`} />
+                <RecommendedRamenCard restaurant={restaurant} key={`${restaurant.id}_${idx}`} />
+              </>
             ))}
           </div>
         </div>

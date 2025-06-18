@@ -9,6 +9,7 @@ const API_BASE_URL = 'http://localhost:3000';
 
 const VisitedRamenCard = ({ restaurant }) => {
   const navigate = useNavigate();
+  console.log(restaurant);
   const deleteVisitedRamenRestaurantById = useDeleteVisitedRamenRestaurant();
 
   const handleDeleteClick = () => {
@@ -27,12 +28,16 @@ const VisitedRamenCard = ({ restaurant }) => {
         ...
       </div>
 
-      <div className='restaurant-header' onClick={() => handleCardBannerClick(restaurant._id)}>
-        <img src={restaurant.bannerImageUrl} className='restaurant-header-backgroundImg' draggable='false' />
-        <div className='restaurant-header-content'>
-          <h2>{restaurant.name}</h2>
-          <p className='location'>{restaurant.location}</p>
-        </div>
+      <div className='restaurant-backgroundImg-wrapper' onClick={() => handleCardBannerClick(restaurant._id)}>
+        <img src={restaurant.bannerImageUrl} className='restaurant-backgroundImg' draggable='false' />
+      </div>
+
+      <div className='restaurant-card-info'>
+        <h2>{restaurant.name}</h2>
+        <p className='location'>
+          <i className='fas fa-map-marker-alt'></i>
+          {restaurant.location}
+        </p>
       </div>
 
       <CardTags />

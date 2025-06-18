@@ -1,8 +1,8 @@
 .container {
-  max-width: 1980px;
-  min-width: 720px;
-
-  width: 96vw;
+  max-width: 1200px;
+  min-width: 400px;
+  width: 90vw;
+  margin: 0 auto;
 }
 
 .header {
@@ -53,66 +53,64 @@
 
 .restaurant-wrapper {
   display: flex;
-  align-items: start;
+
+  flex-direction: column;
+  align-items: center;
 }
 
-.restaurant-wrapper > div:first-child {
-  flex: 2;
-}
-
-.restaurant-wrapper > div:last-child {
-  flex: 1;
+.restaurant-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 80px;
 }
 
 .restaurant-grid-title {
-  font-size: 16px;
+  font-size: 20px;
   display: flex;
   justify-content: center;
 }
 
-.restaurant-grid-title.visited h2 {
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  color: white;
-  background-color: rgb(255, 103, 103);
+.restaurant-grid-title h2 {
   width: 300px;
   border-radius: 8px;
   padding: 8px 0;
   margin: 20px 0;
   cursor: pointer;
+  position: relative;
 }
 
-.restaurant-grid-title.visited h2:hover {
-  background-color: rgb(241, 76, 76);
+.restaurant-grid-title h2::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 5px;
+  background-color: #ffab91; /* 연한 포인트 색상 */
+  border-radius: 3px;
+}
+
+.restaurant-grid-title.visited h2 {
 }
 
 .restaurant-grid-title.planned h2 {
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  color: white;
-  background-color: rgb(235, 163, 86);
-  width: 300px;
-  border-radius: 8px;
-  padding: 8px 0;
-  margin: 20px 0;
-  cursor: pointer;
-}
-
-.restaurant-grid-title.planned h2:hover {
-  background-color: rgb(220, 141, 57);
 }
 
 .restaurant-grid {
   display: grid;
-  gap: 30px;
-  justify-content: center;
+
+  gap: 20px;
+  justify-items: center;
   align-items: start;
 }
 
 .restaurant-grid.visited {
-  border-right: 1px solid rgba(0, 0, 0, 0.3);
-  grid-template-columns: repeat(auto-fill, 300px);
-  padding: 0 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .restaurant-grid.planned {
-  grid-template-columns: repeat(1, 300px);
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }

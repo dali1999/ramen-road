@@ -1,5 +1,6 @@
 .restaurant-card {
-  width: 300px;
+  max-width: calc(1200px / 2 - 20px / 2);
+  width: 100%;
   background: #f4f4f4;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -38,37 +39,47 @@
   transform: translateY(-3px);
 }
 
-.restaurant-header {
+.restaurant-backgroundImg-wrapper {
   position: relative;
-  width: 100%;
   overflow: hidden;
   cursor: pointer;
+  height: 200px;
 }
 
-.restaurant-header-backgroundImg {
+.restaurant-backgroundImg {
   position: absolute;
-  top: -50%;
+  object-fit: cover;
+
   left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   width: 100%;
-  filter: brightness(0.45);
+  height: 100%;
 }
 
-.restaurant-header-content {
-  position: relative;
-  z-index: 1;
-  color: white;
+.restaurant-card-info {
   padding: 20px;
 }
 
-.restaurant-header h2 {
-  font-size: 1.6em;
+.restaurant-card-info h2 {
+  font-family: 'Gowun Batang', serif;
+  text-align: left;
+  font-size: 27px;
   font-weight: 600;
 }
 
-.restaurant-header .location {
-  font-size: 0.9em;
+.restaurant-card-info .location {
+  text-align: left;
+  font-size: 15px;
   opacity: 0.9;
   margin-top: 5px;
+  color: #666;
+}
+
+.restaurant-card-info .location i {
+  color: #ff7a59;
+  margin-right: 10px;
 }
 
 .visits {

@@ -1,9 +1,9 @@
 .cardtags-list {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   gap: 4px;
   row-gap: 6px;
-  padding: 10px 10px 0 10px;
+  padding: 0 12px 4px;
   flex-wrap: wrap;
 }
 
@@ -11,7 +11,7 @@
   font-size: 12px;
   font-weight: 600;
   border-radius: 100px;
-  padding: 4px 8px;
+  padding: 5px 12px;
   width: fit-content;
   color: white;
 }
