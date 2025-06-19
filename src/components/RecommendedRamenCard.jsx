@@ -41,7 +41,7 @@ const RecommendedRamenCard = ({ restaurant }) => {
         <div className='recommended-info'>
           <div className='recommended-member'>
             <li className='recommended-member-image-wrapper'>
-              <img src={`${API_BASE_URL}${recommender.imageUrl}`} alt='추천인 이미지' />
+              <img src={`${recommender.imageUrl}`} alt='추천인 이미지' />
             </li>
 
             <div className='recommended-text-wrapper'>
