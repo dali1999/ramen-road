@@ -44,7 +44,6 @@
 }
 
 .recommended-info {
-  padding: 10px 15px 15px 15px;
   height: 100%;
 }
 
@@ -52,20 +51,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   overflow-x: hidden;
-}
-
-.recommended-member-image-wrapper {
-  display: flex;
-  align-items: center;
-  border: 2px solid #737373;
-  border-radius: 50%;
-  overflow: hidden;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  flex-shrink: 0;
+  padding: 10px 15px 15px 15px;
 }
 
 .recommended-member-image-wrapper img {
@@ -99,7 +86,7 @@
 
 .recommended-text {
   color: #777;
-  font-size: 18px;
+  font-size: 16px;
   font-style: italic;
 
   display: -webkit-box;

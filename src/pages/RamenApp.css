@@ -17,7 +17,11 @@
   flex-direction: column;
   gap: 10px;
   width: 100%;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
+}
+
+.restaurant-section.planned {
+  border-top: 2px dashed #ff9670b9;
 }
 
 .restaurant-grid-title {

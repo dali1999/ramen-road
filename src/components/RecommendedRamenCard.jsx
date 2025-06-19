@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './RecommendedRamenCard.css';
 import { useDeletePlannedRamenRestaurant } from '../hooks/useRamen';
+import UserProfileImage from './common/UserProfileImage';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
@@ -40,8 +41,8 @@ const RecommendedRamenCard = ({ restaurant }) => {
 
         <div className='recommended-info'>
           <div className='recommended-member'>
-            <li className='recommended-member-image-wrapper'>
-              <img src={`${recommender.imageUrl}`} alt='추천인 이미지' />
+            <li>
+              <UserProfileImage user={recommender} size={50} />
             </li>
 
             <div className='recommended-text-wrapper'>
@@ -49,10 +50,7 @@ const RecommendedRamenCard = ({ restaurant }) => {
                 <p>추천인:</p>
                 <p>{recommender.name}</p>
               </div>
-              <div className='recommended-text'>
-                "{restaurant.recommendationComment} 너무 맛있어요 너무 맛있어요너무 맛있어요너무 맛있어요너무 맛있어요너무 맛있어요너무
-                맛있어요너무 맛있어요너무 맛있어요너무 맛있어요"
-              </div>
+              <div className='recommended-text'>"{restaurant.recommendationComment}"</div>
             </div>
           </div>
         </div>

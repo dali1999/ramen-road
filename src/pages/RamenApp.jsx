@@ -19,7 +19,7 @@ const RamenApp = () => {
   return (
     <div className='container'>
       <div className='restaurant-wrapper'>
-        <div className='restaurant-section'>
+        <div className='restaurant-section visited'>
           <div className='restaurant-grid-title visited'>
             <h2 onClick={() => setIsVisitedModalOpen(true)}>🍜 라멘로드</h2>
           </div>
@@ -30,7 +30,7 @@ const RamenApp = () => {
           </div>
         </div>
 
-        <div className='restaurant-section'>
+        <div className='restaurant-section planned'>
           <div className='restaurant-grid-title planned'>
             <h2 onClick={() => setIsPlannedModalOpen(true)}>추천 라멘집 </h2>
           </div>

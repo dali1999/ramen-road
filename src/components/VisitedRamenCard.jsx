@@ -4,14 +4,17 @@ import { MEMBER } from '../ramenData';
 import './VisitedRamenCard.css';
 import { useDeleteVisitedRamenRestaurant } from '../hooks/useRamen';
 import CardTags from './CardTags';
+import UserProfileImage from './common/UserProfileImage';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 const VisitedRamenCard = ({ restaurant }) => {
+  console.log(restaurant);
   const navigate = useNavigate();
   const deleteVisitedRamenRestaurantById = useDeleteVisitedRamenRestaurant();
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (e) => {
+    e.stopPropagation();
     if (window.confirm(`${restaurant.name}을(를) 정말 삭제하시겠습니까?`)) {
       deleteVisitedRamenRestaurantById.mutate(restaurant._id);
     }
@@ -52,8 +55,14 @@ const VisitedRamenCard = ({ restaurant }) => {
             <div className='members'>
               <ul>
                 {visit.members.map((member, idx) => (
-                  <li key={member.name} className='member-item' style={{ zIndex: idx, left: `${idx * 22}px` }}>
-                    <img src={`${API_BASE_URL}${member.imageUrl}`} alt={member.name} className='member-avatar' />
+                  <li
+                    key={member.name}
+                    style={{
+                      zIndex: idx,
+                      left: `${idx * 22}px`,
+                    }}
+                  >
+                    <UserProfileImage user={member} size={36} />
                   </li>
                 ))}
 

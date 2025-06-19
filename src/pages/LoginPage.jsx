@@ -7,7 +7,6 @@ import './LoginPage.css'; // 스타일 시트 (추후 생성)
 const LoginPage = () => {
   const navigate = useNavigate();
   const { login, isLoadingAuth, authError, user } = useAuth(); // useAuth 훅에서 login 함수와 상태 가져오기
-  console.log(user);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

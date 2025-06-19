@@ -2,6 +2,7 @@ import React from 'react';
 import './Header.css';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import UserProfileImage from '../common/UserProfileImage';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -15,14 +16,19 @@ const Header = () => {
     navigate(`/register`);
   };
 
+  const handleHeaderClick = () => {
+    navigate(`/`);
+  };
+
   return (
     <header className='header'>
-      <h1>RAMEN ROAD</h1>
+      <h1 onClick={handleHeaderClick}>RAMEN ROAD</h1>
       {/* <p>한국의 모든 라멘을 먹어보자</p> */}
 
       {user?.member ? (
         <div className='auth-button logout' onClick={logout}>
-          {user.member.name}님 로그아웃
+          {/* {user.member.name}님 로그아웃 */}
+          <UserProfileImage user={user.member} size={50} />
         </div>
       ) : (
         <>
