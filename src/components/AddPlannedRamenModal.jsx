@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAddPlannedRamen, useMembers } from '../hooks/useRamen';
+import { useAddPlannedRamen } from '@hooks/useRamen';
 import './AddVisitedRamenModal.css';
 
 const AddPlannedRamenModal = ({ isOpen, onClose }) => {

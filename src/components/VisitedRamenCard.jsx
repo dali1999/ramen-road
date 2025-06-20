@@ -1,12 +1,10 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MEMBER } from '../ramenData';
 import './VisitedRamenCard.css';
-import { useDeleteVisitedRamenRestaurant } from '../hooks/useRamen';
-import CardTags from './CardTags';
-import UserProfileImage from './common/UserProfileImage';
+import { useDeleteVisitedRamenRestaurant } from '@hooks/useRamen';
+import CardTags from '@components/common/CardTags';
+import UserProfileImage from '@components/common/UserProfileImage';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const VisitedRamenCard = ({ restaurant }) => {
   console.log(restaurant);

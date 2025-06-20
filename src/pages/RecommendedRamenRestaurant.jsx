@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import './RecommendedRamenRestaurant.css';
-import { MEMBER, RAMEN_DATA } from '../ramenData';
-import { usePlannedRamenRestaurant } from '../hooks/useRamen';
+import { usePlannedRamenRestaurant } from '@hooks/useRamen';
 
 const RecommendedRamenRestaurant = () => {
   const { id } = useParams();

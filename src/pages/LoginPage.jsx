@@ -1,7 +1,7 @@
 // src/pages/LoginPage.js
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '@context/AuthContext';
 import './LoginPage.css'; // 스타일 시트 (추후 생성)
 
 const LoginPage = () => {

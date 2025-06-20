@@ -1,10 +1,9 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './RecommendedRamenCard.css';
-import { useDeletePlannedRamenRestaurant } from '../hooks/useRamen';
-import UserProfileImage from './common/UserProfileImage';
+import { useDeletePlannedRamenRestaurant } from '@hooks/useRamen';
+import UserProfileImage from '@components/common/UserProfileImage';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const RecommendedRamenCard = ({ restaurant }) => {
   const navigate = useNavigate();

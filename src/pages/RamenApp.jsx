@@ -1,10 +1,10 @@
 import './RamenApp.css';
-import { usePlannedRamenRestaurants, useVisitedRamenRestaurants } from '../hooks/useRamen';
-import VisitedRamenCard from '../components/VisitedRamenCard';
-import RecommendedRamenCard from '../components/RecommendedRamenCard';
+import { usePlannedRamenRestaurants, useVisitedRamenRestaurants } from '@hooks/useRamen';
+import VisitedRamenCard from '@components/VisitedRamenCard';
+import RecommendedRamenCard from '@components/RecommendedRamenCard';
 import { useState } from 'react';
-import AddVisitedRamenModal from '../components/AddVisitedRamenModal';
-import AddPlannedRamenModal from '../components/AddPlannedRamenModal';
+import AddVisitedRamenModal from '@components/AddVisitedRamenModal';
+import AddPlannedRamenModal from '@components/AddPlannedRamenModal';
 
 const RamenApp = () => {
   const { data: visitedRamenList, isLoading: isLoadingVisited } = useVisitedRamenRestaurants();

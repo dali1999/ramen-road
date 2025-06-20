@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAddVisitedRamen, useMembers } from '../hooks/useRamen';
+import { useAddVisitedRamen, useMembers } from '@hooks/useRamen';
 import './AddVisitedRamenModal.css';
 
 const AddVisitedRamenModal = ({ isOpen, onClose }) => {
