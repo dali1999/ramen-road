@@ -45,15 +45,15 @@ const RegisterPage = () => {
         <h2>회원가입</h2>
         <form onSubmit={handleSubmit}>
           <div className='form-group'>
-            <label htmlFor='register-name'>이름:</label>
+            <label htmlFor='register-name'>이름</label>
             <input type='text' id='register-name' value={name} onChange={(e) => setName(e.target.value)} required />
           </div>
           <div className='form-group'>
-            <label htmlFor='register-email'>이메일:</label>
+            <label htmlFor='register-email'>이메일</label>
             <input type='email' id='register-email' value={email} onChange={(e) => setEmail(e.target.value)} required />
           </div>
           <div className='form-group'>
-            <label htmlFor='register-password'>비밀번호:</label>
+            <label htmlFor='register-password'>비밀번호</label>
             <input
               type='password'
               id='register-password'
@@ -64,13 +64,13 @@ const RegisterPage = () => {
             />
           </div>
           <div className='form-group'>
-            <label htmlFor='register-nickname'>닉네임 (선택 사항):</label>
+            <label htmlFor='register-nickname'>닉네임 (선택 사항)</label>
             <input type='text' id='register-nickname' value={nickname} onChange={(e) => setNickname(e.target.value)} />
           </div>
 
           {/* 이미지 파일 업로드 필드 */}
           <div className='form-group'>
-            <label htmlFor='profileImage'>프로필 이미지:</label>
+            <label htmlFor='profileImage'>프로필 이미지</label>
             <input type='file' id='profileImage' name='profileImage' accept='image/*' onChange={(e) => setImageFile(e.target.files?.[0])} />
             {imageFile && <p style={{ fontSize: '12px', color: '#666' }}>선택된 파일: {imageFile.name}</p>}
           </div>

@@ -3,11 +3,12 @@ import './VisitedRamenCard.css';
 import { useDeleteVisitedRamenRestaurant } from '@hooks/useRamen';
 import CardTags from '@components/common/CardTags';
 import UserProfileImage from '@components/common/UserProfileImage';
+import StarRating from '@components/common/StarRating';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const VisitedRamenCard = ({ restaurant }) => {
-  console.log(restaurant);
+  console.log(restaurant.tags);
   const navigate = useNavigate();
   const deleteVisitedRamenRestaurantById = useDeleteVisitedRamenRestaurant();
 
@@ -40,7 +41,22 @@ const VisitedRamenCard = ({ restaurant }) => {
         </p>
       </div>
 
-      <CardTags />
+      {/* <CardTags /> */}
+      <ul className='cardtags-list card'>
+        {restaurant.tags.map((tag, idx) => (
+          <li
+            className={`cardtags-item`}
+            key={`${tag.label}_${idx}`}
+            style={{
+              backgroundColor: 'rgb(200, 104, 21)',
+              color: 'white',
+              borderColor: 'rgb(200, 104, 21)',
+            }}
+          >
+            {tag}
+          </li>
+        ))}
+      </ul>
 
       <div className='visits'>
         {restaurant.visits.map((visit) => (
@@ -60,12 +76,14 @@ const VisitedRamenCard = ({ restaurant }) => {
                       left: `${idx * 22}px`,
                     }}
                   >
-                    <UserProfileImage user={member} size={36} />
+                    <UserProfileImage user={member} size={32} />
                   </li>
                 ))}
 
-                {restaurant.ratingAverage > 0 ? (
-                  <div className='rating'>{restaurant.ratingAverage}</div>
+                {visit.visitRatingAverage > 0 ? (
+                  <div className='rating'>
+                    <StarRating rating={visit.visitRatingAverage} />
+                  </div>
                 ) : (
                   <div className='noRating'>별점 없음</div>
                 )}

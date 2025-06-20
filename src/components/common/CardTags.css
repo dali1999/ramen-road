@@ -1,17 +1,35 @@
 .cardtags-list {
   display: flex;
-  /* justify-content: center; */
-  gap: 4px;
-  row-gap: 6px;
-  padding: 0 12px 4px;
   flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.cardtags-list.card {
+  padding: 0 12px;
 }
 
 .cardtags-item {
-  font-size: 12px;
-  font-weight: 600;
-  border-radius: 100px;
-  padding: 5px 12px;
-  width: fit-content;
-  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid;
+}
+
+/* 선택된 태그 스타일 */
+.cardtags-item.selected {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.cardtags-item:hover:not(.selected) {
+  opacity: 0.8;
+  transform: translateY(-1px);
 }

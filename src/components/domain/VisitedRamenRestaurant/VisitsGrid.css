@@ -1,0 +1,235 @@
+.visits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.visit-item {
+  background-color: #fdfdfd;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 18px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.visit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #eee;
+}
+
+.visit-header h3 {
+  font-size: 1.2em;
+  color: #d94f4f;
+  margin: 0;
+}
+
+.visit-date-display {
+  font-size: 0.8em;
+  color: #888;
+}
+
+.members-review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.member-review-item {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f5f5f5; /* 구분선 */
+}
+.member-review-item:last-child {
+  border-bottom: none; /* 마지막 아이템은 구분선 없음 */
+  padding-bottom: 0;
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.member-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  /* margin-top: 4px; */
+  text-align: left;
+}
+
+.member-review-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* 버튼 위치 지정을 위해 */
+}
+
+.member-review-text {
+  font-size: 12px;
+
+  color: #444;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.member-review-text.none {
+  color: #ccc;
+}
+
+.member-rating {
+  font-size: 20px;
+  color: #f4a261;
+  text-align: right;
+  align-self: flex-end;
+  justify-content: center;
+  line-height: 22px;
+  height: 26px;
+}
+
+.member-rating.no-rating {
+  font-size: 0.9em;
+  color: #ccc;
+}
+
+/* 편집 모드 */
+.edit-review-button {
+  background-color: #fff5ef;
+  border: 1px solid #eca880;
+  color: #de783d;
+
+  border-radius: 5px;
+  padding: 4px 10px;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  align-self: flex-end;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.edit-review-button:hover:not(:disabled) {
+  background-color: #ffe8da;
+}
+
+/* .edit-review-button:disabled {
+  background-color: #cf8c7b;
+  cursor: not-allowed;
+} */
+
+.review-input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.rating-input {
+  width: 80px; /* 별점 입력 필드 너비 */
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+  text-align: center;
+  border: 1px solid red;
+}
+
+.rating-input[readonly] {
+  background-color: #f0f0f0; /* 읽기 전용임을 나타내는 배경색 */
+  cursor: default;
+}
+
+.review-textarea {
+  width: 100%; /* 전체 너비 */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9em;
+  resize: vertical; /* 세로 크기 조절 가능 */
+  min-height: 60px; /* 최소 높이 */
+}
+
+.review-actions {
+  display: flex;
+  justify-content: flex-end; /* 버튼 오른쪽 정렬 */
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.review-actions button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.review-actions button:first-child {
+  /* 저장 버튼 */
+  background-color: #f4a261;
+  color: white;
+}
+
+.review-actions button:first-child:hover:not(:disabled) {
+  background-color: #d94f4f;
+}
+
+.review-actions button:last-child {
+  /* 취소 버튼 */
+  background-color: #6c757d;
+  color: white;
+}
+
+.review-actions button:last-child:hover:not(:disabled) {
+  background-color: #545b62;
+}
+
+/* 별점 input 화살표 숨기기 */
+/* input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+
+} */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+@media (max-width: 768px) {
+  .visits-grid {
+    grid-template-columns: 1fr;
+  }
+  .member-avatar {
+    width: 40px;
+    height: 40px;
+  }
+  .member-name {
+    font-size: 0.75em;
+  }
+  .member-review-text {
+    font-size: 0.8em;
+  }
+  .member-rating {
+    font-size: 1em;
+  }
+  .edit-review-button {
+    padding: 5px 10px;
+    font-size: 0.7em;
+  }
+  .rating-input {
+    width: 60px;
+  }
+}

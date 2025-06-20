@@ -24,7 +24,7 @@ const RamenApp = () => {
             <h2 onClick={() => setIsVisitedModalOpen(true)}>🍜 라멘로드</h2>
           </div>
           <div className='restaurant-grid visited'>
-            {visitedRamenList?.map((restaurant, idx) => (
+            {visitedRamenList.reverse()?.map((restaurant, idx) => (
               <VisitedRamenCard restaurant={restaurant} key={`${restaurant.id}_${idx}`} />
             ))}
           </div>

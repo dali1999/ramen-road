@@ -1,12 +1,11 @@
-/* src/pages/VisitedRamenRestaurant.css */
-
 /* 전체 컨테이너 및 기본 설정 */
 .restaurant-detail-container {
-  max-width: 900px; /* 전체 컨테이너 최대 너비 축소 */
+  max-width: 1200px; /* 전체 컨테이너 최대 너비 축소 */
+  width: 90vw;
   margin: 0 auto;
-  padding: 30px 15px; /* 패딩 축소 */
+  padding: 20px 15px; /* 패딩 축소 */
   font-family: 'Noto Sans KR', sans-serif;
-  background-color: #f8f8f8;
+  /* background-color: #f8f8f8; */
   box-sizing: border-box;
   color: #333; /* 기본 글씨 색상 조정 */
 }
@@ -167,217 +166,11 @@
   margin-top: 15px;
 }
 
-.visits-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-top: 25px;
-}
-
-.visit-card {
-  background-color: #fdfdfd;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  padding: 18px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease;
-}
-
-.visit-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px dashed #eee;
-}
-
-.visit-header h3 {
-  font-size: 1.2em;
-  color: #d94f4f;
-  margin: 0;
-}
-
-.visit-date-display {
-  font-size: 0.8em;
-  color: #888;
-}
-
-.members-review-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.member-review-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding-bottom: 10px; /* 아이템 하단 패딩 */
-  border-bottom: 1px solid #f5f5f5; /* 구분선 */
-}
-.member-review-item:last-child {
-  border-bottom: none; /* 마지막 아이템은 구분선 없음 */
-  padding-bottom: 0;
-}
-
-.member-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-/* UserProfileImage 컴포넌트 자체의 스타일은 UserProfileImage.css에서 관리 */
-/* .member-avatar { /* 이곳에서는 사용하지 않습니다. */
-/* width: 45px; */
-/* height: 45px; */
-/* border-radius: 50%; */
-/* object-fit: cover; */
-/* border: 1.5px solid #f4a261; */
-/* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); */
-/* } */
-
-.member-name {
-  font-size: 0.8em;
-  font-weight: bold;
-  color: #555;
-  margin-top: 4px;
-}
-
-.member-review-content {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  position: relative; /* 버튼 위치 지정을 위해 */
-}
-
-.member-review-text {
-  font-size: 0.95em;
-  color: #444;
-  line-height: 1.5;
-  margin-bottom: 8px;
-  text-align: left;
-}
-
-.member-rating {
-  font-size: 1.3em;
-  color: #f4a261;
-  text-align: right;
-  align-self: flex-end;
-}
-
-.member-rating.no-rating {
-  font-size: 0.9em;
-  color: #ccc;
-  font-style: italic;
-  font-weight: normal;
-}
-
-/* --- 새로운 UI 요소 스타일 --- */
-.edit-review-button {
-  background-color: #d16729; /* 파란색 */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 6px 12px;
-  font-size: 0.8em;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  margin-bottom: 10px; /* 텍스트와의 간격 */
-  align-self: flex-end; /* 오른쪽 정렬 */
-  position: absolute; /* ✨ 추가: 리뷰 콘텐츠 우측 상단에 위치 ✨ */
-  top: 0;
-  right: 0;
-}
-
-.edit-review-button:hover:not(:disabled) {
-  background-color: #b9573e;
-}
-
-.edit-review-button:disabled {
-  background-color: #a0c4ff;
-  cursor: not-allowed;
-}
-
-.review-input-area {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 5px;
-  width: 100%;
-}
-
-.rating-input {
-  width: 80px; /* 별점 입력 필드 너비 */
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1em;
-  text-align: center;
-}
-
-.review-textarea {
-  width: 100%; /* 전체 너비 */
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 0.9em;
-  resize: vertical; /* 세로 크기 조절 가능 */
-  min-height: 60px; /* 최소 높이 */
-}
-
-.review-actions {
-  display: flex;
-  justify-content: flex-end; /* 버튼 오른쪽 정렬 */
-  gap: 10px;
-  margin-top: 5px;
-}
-
-.review-actions button {
-  padding: 8px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.9em;
-  font-weight: bold;
-  transition: background-color 0.2s ease;
-}
-
-.review-actions button:first-child {
-  /* 저장 버튼 */
-  background-color: #f4a261;
-  color: white;
-}
-
-.review-actions button:first-child:hover:not(:disabled) {
-  background-color: #d94f4f;
-}
-
-.review-actions button:last-child {
-  /* 취소 버튼 */
-  background-color: #6c757d;
-  color: white;
-}
-
-.review-actions button:last-child:hover:not(:disabled) {
-  background-color: #545b62;
-}
-
-/* 별점 input 화살표 숨기기 */
-input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type='number'] {
-  -moz-appearance: textfield;
-}
-
 /* 모바일 반응형 고려 (선택 사항, 필요시 추가) */
 @media (max-width: 768px) {
   .restaurant-detail-container {
     padding: 20px 10px;
+    width: 90vw;
   }
   .restaurant-hero {
     height: 200px;
@@ -402,28 +195,5 @@ input[type='number'] {
   .gallery-image {
     width: 150px;
     height: 120px;
-  }
-  .visits-grid {
-    grid-template-columns: 1fr; /* 모바일에서는 한 줄에 하나씩 */
-  }
-  .member-avatar {
-    width: 40px;
-    height: 40px;
-  }
-  .member-name {
-    font-size: 0.75em;
-  }
-  .member-review-text {
-    font-size: 0.8em;
-  }
-  .member-rating {
-    font-size: 1em;
-  }
-  .edit-review-button {
-    padding: 5px 10px;
-    font-size: 0.7em;
-  }
-  .rating-input {
-    width: 60px;
   }
 }

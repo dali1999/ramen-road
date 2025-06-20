@@ -6,11 +6,14 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7); /* 반투명 검은 배경 */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* 다른 요소 위에 표시 */
+
+  backdrop-filter: blur(5px); /* 블러 강도 조절 (예: 5px, 10px 등) */
+  -webkit-backdrop-filter: blur(5px); /* 웹킷 기반 브라우저를 위한 접두사 */
+  z-index: 1000;
 }
 
 .modal-content {
@@ -141,25 +144,25 @@
 }
 
 .modal-actions button[type='submit'] {
-  background-color: #007bff;
+  background-color: #f4a261;
   color: white;
 }
 
 .modal-actions button[type='submit']:hover:not(:disabled) {
-  background-color: #0056b3;
+  background-color: #d94f4f;
 }
 
 .modal-actions button[type='submit']:disabled {
-  background-color: #a0c4ff;
+  background-color: #fcd6b7;
   cursor: not-allowed;
 }
 
 .modal-actions button[type='button'] {
   /* 닫기 버튼 */
-  background-color: #6c757d;
+  background-color: #bebebe;
   color: white;
 }
 
 .modal-actions button[type='button']:hover:not(:disabled) {
-  background-color: #545b62;
+  background-color: #939393;
 }

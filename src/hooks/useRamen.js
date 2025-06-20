@@ -5,7 +5,7 @@ import {
   addVisitedRamen,
   getVisitedRamenRestaurants,
   getVisitedRamenRestaurantById,
-  updateMemberRating,
+  updateMemberRatingAndReview,
   addPlannedRamen,
   getPlannedRamenRestaurants,
   getPlannedRamenRestaurantById,
@@ -71,9 +71,10 @@ export const useDeleteVisitedRamenRestaurant = () => {
 export const useAddVisitedRamen = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: addVisitedRamen,
+    mutationFn: (payload) => addVisitedRamen(payload),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['visitedRamen'] }); // 방문 라멘집 목록 갱신
+      queryClient.invalidateQueries({ queryKey: ['visitedRamen'] });
+      alert('방문 라멘집 기록이 성공적으로 추가되었습니다!');
     },
     onError: (error) => {
       alert(`방문 라멘집 추가 실패: ${error.response?.data?.message || error.message}`);
@@ -81,15 +82,16 @@ export const useAddVisitedRamen = () => {
   });
 };
 
-export const useUpdateMemberRating = () => {
+export const useUpdateMemberRatingAndReview = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ restaurantId, visitCount, memberName, rating }) => updateMemberRating(restaurantId, visitCount, memberName, { rating }),
+    mutationFn: ({ restaurantId, visitCount, memberName, rating, reviewText }) =>
+      updateMemberRatingAndReview(restaurantId, visitCount, memberName, { rating, reviewText }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['visitedRamen'] }); // 방문 라멘집 목록 갱신 (별점 변경 반영)
+      queryClient.invalidateQueries({ queryKey: ['visitedRamen'] });
     },
     onError: (error) => {
-      alert(`별점 업데이트 실패: ${error.response?.data?.message || error.message}`);
+      alert(`별점 및 후기 업데이트 실패: ${error.response?.data?.message || error.message}`);
     },
   });
 };

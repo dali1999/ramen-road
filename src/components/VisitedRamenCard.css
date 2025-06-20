@@ -85,19 +85,17 @@
 
 .visits {
   padding: 12px;
-  flex-grow: 1;
+  /* flex-grow: 1; */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .visit-card {
   border-left: 4px solid #f4a261;
   padding: 10px;
-  margin-bottom: 10px;
   background: #ffffff;
   border-radius: 8px;
-}
-
-.visit-card:last-child {
-  margin-bottom: 0px;
 }
 
 .visit-info {
@@ -134,6 +132,9 @@
   color: #f4a261;
   font-size: 18px;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .noRating {

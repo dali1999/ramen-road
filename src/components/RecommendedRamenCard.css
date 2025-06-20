@@ -9,6 +9,7 @@
   display: flex;
   position: relative;
   cursor: pointer;
+  height: 180px;
 }
 
 .recommended-restaurant-card:hover {
@@ -16,10 +17,11 @@
 }
 
 .recommended-restaurant-backgroundImg-wrapper {
+  border: 1px solid red;
   width: 38%;
   position: relative;
   overflow: hidden;
-  height: 200px;
+  height: 100%;
   background-color: #e4e4e4;
 }
 

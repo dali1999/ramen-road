@@ -4,19 +4,14 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  // headers: {
+  //   'Content-Type': 'application/json',
+  // },
 });
 
 api.interceptors.request.use(
   (config) => {
-    // 1. localStorage에서 JWT 토큰을 가져옵니다.
-    // 'token'은 로그인 성공 시 `localStorage.setItem('token', data.token)`으로 저장한 키입니다.
     const token = localStorage.getItem('token');
-
-    // 2. 토큰이 존재하면 요청 헤더에 'Authorization' 필드를 추가합니다.
-    // 'Bearer '는 JWT 토큰을 전송할 때 사용되는 표준 접두사입니다.
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
@@ -60,8 +55,8 @@ export const getVisitedRamenRestaurantById = async (restaurantId) => {
   return response.data;
 };
 
-// 6. 멤버별 라멘집 별점 추가/수정
-export const updateMemberRating = async (restaurantId, visitCount, memberName, payload) => {
+// 6. 멤버별 라멘집 별점 및 후기 추가/수정
+export const updateMemberRatingAndReview = async (restaurantId, visitCount, memberName, payload) => {
   const response = await api.patch(`/api/visited-ramen/${restaurantId}/visits/${visitCount}/members/${memberName}/rating`, payload);
   return response.data.restaurant;
 };
