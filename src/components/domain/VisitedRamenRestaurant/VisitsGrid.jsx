@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useUpdateMemberRatingAndReview, useVisitedRamenRestaurant } from '@hooks/useRamen';
 import UserProfileImage from '@components/common/UserProfileImage';
+import StarRating from '@components/common/StarRating';
+
 import './VisitsGrid.css';
 
 const VisitsGrid = ({ user, id }) => {
@@ -11,20 +13,6 @@ const VisitsGrid = ({ user, id }) => {
   const [editingRating, setEditingRating] = useState(null);
   const [newRating, setNewRating] = useState(0);
   const [newReviewText, setNewReviewText] = useState('');
-
-  const renderStarRating = (rating) => {
-    const fullStars = Math.floor(rating);
-    const halfStar = rating % 1 >= 0.5;
-    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
-
-    return (
-      <>
-        {'★'.repeat(fullStars)}
-        {halfStar && '½'}
-        {'☆'.repeat(emptyStars)}
-      </>
-    );
-  };
 
   const handleRatingSubmit = async (visitCount, memberName) => {
     if (newRating === 0 || newRating < 0 || newRating > 5) {
@@ -134,9 +122,13 @@ const VisitsGrid = ({ user, id }) => {
                         ) : (
                           <p className='member-review-text none'>후기가 없습니다</p>
                         )}
-                        <span className={`member-rating ${member.rating === null ? 'no-rating' : ''}`}>
+                        {/* <span className={`member-rating ${member.rating === null ? 'no-rating' : ''}`}>
                           {member.rating !== null ? renderStarRating(member.rating) : '별점 없음'}
-                        </span>
+                        </span> */}
+
+                        <div className={`member-rating ${member.rating === null ? 'no-rating' : ''}`}>
+                          {member.rating !== null ? <StarRating rating={member.rating} /> : '별점 없음'}
+                        </div>
                       </>
                     )}
                   </div>

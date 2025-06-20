@@ -89,13 +89,14 @@
 }
 
 .member-rating {
-  font-size: 20px;
+  font-size: 14px;
   color: #f4a261;
-  text-align: right;
+
   align-self: flex-end;
   justify-content: center;
-  line-height: 22px;
   height: 26px;
+  display: flex;
+  gap: 2px;
 }
 
 .member-rating.no-rating {

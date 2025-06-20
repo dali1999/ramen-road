@@ -136,6 +136,15 @@
   align-items: center;
   gap: 4px;
 }
+.rating.visit {
+  color: #f4a261;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 4px;
+}
 
 .noRating {
   color: #c8c8c8;

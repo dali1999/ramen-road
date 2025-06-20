@@ -3,6 +3,7 @@ import './VisitedRamenRestaurant.css';
 import { useVisitedRamenRestaurant } from '@hooks/useRamen';
 import { useAuth } from '@context/AuthContext';
 import VisitsGrid from '@components/domain/VisitedRamenRestaurant/VisitsGrid';
+import StarRating from '@components/common/StarRating';
 
 const VisitedRamenRestaurant = () => {
   const { id } = useParams();
@@ -12,20 +13,6 @@ const VisitedRamenRestaurant = () => {
   if (isLoading) return <div className='loading-message'>🍜 라멘집 정보를 불러오는 중...</div>;
   if (error) return <div className='error-message'>😔 오류가 발생했어요: {error.message}</div>;
   if (!visitedRamenItem) return <div className='not-found-message'>존재하지 않거나, 아직 등록되지 않은 라멘집입니다.</div>;
-
-  const renderStarRating = (rating) => {
-    const fullStars = Math.floor(rating);
-    const halfStar = rating % 1 >= 0.5;
-    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
-
-    return (
-      <>
-        {'★'.repeat(fullStars)}
-        {halfStar && '½'}
-        {'☆'.repeat(emptyStars)}
-      </>
-    );
-  };
 
   return (
     <div className='restaurant-detail-container'>
@@ -38,7 +25,7 @@ const VisitedRamenRestaurant = () => {
           <p className='restaurant-detail-location'>{visitedRamenItem.location}</p>
           <div className='restaurant-detail-rating'>
             <span className='stars'>
-              {visitedRamenItem.ratingAverage > 0 ? renderStarRating(visitedRamenItem.ratingAverage) : '아직 별점이 없어요'}
+              {visitedRamenItem.ratingAverage > 0 ? <StarRating rating={visitedRamenItem.ratingAverage} /> : '아직 별점이 없어요'}
             </span>
             {visitedRamenItem.ratingAverage > 0 && <span className='rating-value'>{visitedRamenItem.ratingAverage.toFixed(1)} / 5</span>}
           </div>
