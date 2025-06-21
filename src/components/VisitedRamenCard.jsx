@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './VisitedRamenCard.css';
 import { useDeleteVisitedRamenRestaurant } from '@hooks/useRamen';
 import UserProfileImage from '@components/common/UserProfileImage';
 import StarRating from '@components/common/StarRating';
 import { useAuth } from '@context/AuthContext';
 import { ALL_TAGS } from '@components/common/CardTags';
 import AddVisitedRamenModal from './AddVisitedRamenModal';
+import './VisitedRamenCard.css';
 
 const VisitedRamenCard = ({ restaurant }) => {
+  console.log(restaurant);
   const navigate = useNavigate();
   const deleteVisitedRamenRestaurantById = useDeleteVisitedRamenRestaurant();
   const { user } = useAuth();

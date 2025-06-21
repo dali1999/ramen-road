@@ -26,6 +26,15 @@
   position: relative;
 }
 
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #e4b187;
+  border-radius: 10px;
+}
+
 .modal-content h2 {
   margin-top: 0;
   color: #333;
