@@ -1,8 +1,8 @@
-import React from 'react';
 import './Header.css';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '@context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import UserProfileImage from '../common/UserProfileImage';
+import UserProfileImage from '@components/common/UserProfileImage';
+import LogoIcon from '@assets/ramen-road-logo.png';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -20,26 +20,46 @@ const Header = () => {
     navigate(`/`);
   };
 
+  const handleProfileClick = () => {
+    navigate(`/mypage`);
+  };
+
   return (
     <header className='header'>
-      <h1 onClick={handleHeaderClick}>RAMEN ROAD</h1>
-      {/* <p>한국의 모든 라멘을 먹어보자</p> */}
+      {/* 로고 */}
+      <div className='header-logo' onClick={handleHeaderClick}>
+        <img src={LogoIcon} alt='로고 아이콘' />
+        <h1 onClick={handleHeaderClick}>RAMEN ROAD</h1>
+      </div>
 
-      {user?.member ? (
-        <div className='auth-button logout' onClick={logout}>
-          {/* {user.member.name}님 로그아웃 */}
-          <UserProfileImage user={user.member} size={50} />
-        </div>
-      ) : (
-        <>
-          <div className='auth-button login' onClick={handleLoginButtonClick}>
-            로그인
+      <div className='header-bottom-row'>
+        {/* 메뉴 */}
+        <ul className='header-menu-list'>
+          <li onClick={() => navigate('/')}>라멘로드</li> {/* 클릭 시 메인 페이지로 */}
+          <li onClick={() => navigate('/')}>추천</li>
+          <li onClick={() => navigate('/')}>공지</li>
+        </ul>
+
+        {/* 내 정보, 인증 부분 */}
+        {user?.member ? (
+          <div className='header-auth-section'>
+            <div className='header-auth-user-info' onClick={handleProfileClick}>
+              <UserProfileImage user={user.member} size={36} />
+              {/* <span className='user-name'>{user.member.name}님</span> */}
+              {/* <span className='logout-text'>로그아웃</span> */}
+            </div>
           </div>
-          <div className='auth-button register' onClick={handleRegisterButtonClick}>
-            회원가입
+        ) : (
+          <div className='header-auth-section'>
+            <div className='header-auth-button login' onClick={handleLoginButtonClick}>
+              로그인
+            </div>
+            <div className='header-auth-button register' onClick={handleRegisterButtonClick}>
+              회원가입
+            </div>
           </div>
-        </>
-      )}
+        )}
+      </div>
     </header>
   );
 };

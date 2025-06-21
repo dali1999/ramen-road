@@ -1,5 +1,6 @@
 .cardtags-list {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 8px;
   padding: 0;
@@ -8,16 +9,15 @@
 
 .cardtags-list.card {
   padding: 0 12px;
+  justify-content: end;
 }
 
 .cardtags-item {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 10px;
+  text-align: left;
+  padding: 3px 9px;
   border-radius: 50px;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 13px;
+  font-weight: 400;
   cursor: pointer;
   transition: all 0.2s ease;
   border: 1px solid;

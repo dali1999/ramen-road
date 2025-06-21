@@ -23,6 +23,29 @@ api.interceptors.request.use(
   },
 );
 
+api.interceptors.response.use(
+  (response) => response, // 성공적인 응답은 그대로 전달
+  async (error) => {
+    const originalRequest = error.config;
+
+    // 토큰이 없거나, 만료되었거나, 유효하지 않거나, 권한이 없음을 의미합니다.
+    if ((error.response?.status === 401 || error.response?.status === 403) && !originalRequest._retry) {
+      originalRequest._retry = true; // 무한 루프 방지
+
+      // 강제 로그아웃 로직을 실행합니다.
+      localStorage.removeItem('token');
+      localStorage.removeItem('member');
+
+      alert('세션이 만료되었거나 권한이 없습니다. 다시 로그인해주세요.');
+      window.location.href = '/login';
+
+      return Promise.reject(error);
+    }
+
+    return Promise.reject(error);
+  },
+);
+
 // --- API 함수 정의 ---
 
 // 1. 멤버 추가
@@ -31,9 +54,21 @@ export const addMember = async (payload) => {
   return response.data.member;
 };
 
-// 2. 모든 멤버 조회
+// 2.1 모든 멤버 조회
 export const getMembers = async () => {
   const response = await api.get('/api/members');
+  return response.data;
+};
+
+// 2.2 내 정보 조회
+export const getMyProfile = async () => {
+  const response = await api.get('/api/members/me');
+  return response.data;
+};
+
+// 2.3 내 정보 수정
+export const updateMyProfile = async (payload) => {
+  const response = await api.patch('/api/members/me', payload);
   return response.data;
 };
 
@@ -89,5 +124,11 @@ export const deleteVisitedRamenRestaurantById = async (restaurantId) => {
 // 11. 방문 예정 라멘집 삭제 (id)
 export const deletePlannedRamenRestaurantById = async (restaurantId) => {
   const response = await api.delete(`/api/planned-ramen/${restaurantId}`);
+  return response.data;
+};
+
+// 12. 멤버 삭제 (id)
+export const deleteMemberById = async (memberId) => {
+  const response = await api.delete(`/api/members/${memberId}`);
   return response.data;
 };

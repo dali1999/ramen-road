@@ -11,6 +11,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import RegisterPage from './pages/RegisterPage.jsx';
 import Header from './components/layout/Header.jsx';
 import Footer from './components/layout/Footer.jsx';
+import MyPage from './pages/MyPage.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,6 +43,7 @@ function App() {
                   <Route path='/' element={<RamenApp />} />
                   <Route path='/login' element={<LoginPage />} />
                   <Route path='/register' element={<RegisterPage />} />
+                  <Route path='/mypage' element={<MyPage />} />
                   <Route path='/restaurant/:id' element={<VisitedRamenRestaurant />} />
                   <Route path='/recommended/:id' element={<RecommendedRamenRestaurant />} />
                 </Route>

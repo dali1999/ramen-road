@@ -1,33 +1,33 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useAddVisitedRamen, useMembers } from '@hooks/useRamen';
 import CardTags from '@components/common/CardTags';
 import './AddVisitedRamenModal.css';
+import UserProfileImage from './common/UserProfileImage';
 
-const DEFAULT_BANNER_IMAGE =
-  'https://us.123rf.com/450wm/eclaira/eclaira2302/eclaira230200005/198689430-ciotola-di-noodles-di-ramen-con-carne-di-maiale-e-uova-cibo-asiatico-illustrazione-vettoriale.jpg?ver=6';
-
-const ALL_TAGS = [
-  { label: '쇼유 맛집', color: 'rgb(200, 104, 21)' },
-  { label: '돈코츠 맛집', color: 'rgb(218, 178, 1)' },
-  { label: '사장 친절', color: 'rgb(100, 161, 20)' },
-  { label: '지로계 맛집', color: 'rgb(150, 117, 8)' },
-  { label: '시오 맛집', color: 'rgb(226, 200, 114)' },
-  { label: '사장 병신', color: 'rgb(232, 88, 88)' },
-];
-
-const AddVisitedRamenModal = ({ isOpen, onClose }) => {
+const AddVisitedRamenModal = ({ initialRestaurant = null, isOpen, onClose }) => {
   const { data: members, isLoading: isLoadingMembers, error: membersError } = useMembers();
   const addVisitedRamenMutation = useAddVisitedRamen();
 
   // --- 폼 상태 관리 ---
-  const [name, setName] = useState('');
-  const [location, setLocation] = useState('');
+  const [name, setName] = useState(initialRestaurant ? initialRestaurant.name : '');
+  const [location, setLocation] = useState(initialRestaurant ? initialRestaurant.location : '');
   const [visitDate, setVisitDate] = useState('');
-  const [bannerImageFile, setBannerImageFile] = useState('');
+  const [bannerImageFile, setBannerImageFile] = useState(null);
   const [selectedMembers, setSelectedMembers] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
 
-  console.log(selectedTags);
+  const resetFormStates = useCallback(() => {
+    setName(initialRestaurant ? initialRestaurant.name : '');
+    setLocation(initialRestaurant ? initialRestaurant.location : '');
+    setVisitDate('');
+    setBannerImageFile(null);
+    setSelectedMembers([]);
+    setSelectedTags(initialRestaurant && initialRestaurant.tags ? [...initialRestaurant.tags] : []);
+  }, [initialRestaurant]);
+
+  useEffect(() => {
+    resetFormStates();
+  }, [initialRestaurant, isOpen, resetFormStates]);
 
   if (!isOpen) return null;
 
@@ -46,36 +46,39 @@ const AddVisitedRamenModal = ({ isOpen, onClose }) => {
     formData.append('members', JSON.stringify(selectedMembers.map((memberName) => ({ name: memberName }))));
     formData.append('tags', JSON.stringify(selectedTags));
 
-    if (bannerImageFile) {
+    if (!initialRestaurant && bannerImageFile) {
       formData.append('bannerImage', bannerImageFile);
     }
 
     addVisitedRamenMutation.mutate(formData, {
       onSuccess: () => {
-        // alert('새로운 라멘집 방문 기록이 성공적으로 추가되었습니다!');
-        setName('');
-        setLocation('');
-        setVisitDate('');
-        setBannerImageFile(null);
-        setSelectedMembers([]);
-        setSelectedTags([]);
-        onClose(); // 모달 닫기
+        alert(initialRestaurant ? '재방문 기록이 성공적으로 추가되었습니다!' : '새로운 라멘집이 성공적으로 개척되었습니다!');
+        resetFormStates();
+        onClose();
       },
     });
   };
 
-  const handleMemberCheckboxChange = (e) => {
-    const { value, checked } = e.target;
+  const handleMemberItemClick = (memberName) => {
     setSelectedMembers((prevSelectedMembers) => {
-      if (checked) {
-        // 체크되면 배열에 추가
-        return [...prevSelectedMembers, value];
+      if (prevSelectedMembers.includes(memberName)) {
+        // 이미 선택된 멤버면 제거
+        return prevSelectedMembers.filter((name) => name !== memberName);
       } else {
-        // 체크 해제되면 배열에서 제거
-        return prevSelectedMembers.filter((member) => member !== value);
+        // 선택되지 않은 멤버면 추가
+        return [...prevSelectedMembers, memberName];
       }
     });
   };
+
+  const handleCloseClick = () => {
+    resetFormStates();
+    onClose();
+  };
+
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const maxDate = tomorrow.toISOString().split('T')[0];
 
   if (isLoadingMembers)
     return (
@@ -93,35 +96,52 @@ const AddVisitedRamenModal = ({ isOpen, onClose }) => {
     );
 
   return (
-    <div className='modal-overlay' onClick={onClose}>
+    <div className='modal-overlay' onClick={handleCloseClick}>
       <div className='modal-content' onClick={(e) => e.stopPropagation()}>
-        <h2>라멘 로드 개척</h2>
+        <h2>{!initialRestaurant ? '라멘 로드 개척' : '여기를 또 갔어?'}</h2>
         <form onSubmit={handleSubmit}>
-          {/* 라멘집 이름 입력 필드 */}
-          <div className='form-group'>
-            <label htmlFor='name'>라멘집 이름:</label>
-            <input type='text' id='name' value={name} onChange={(e) => setName(e.target.value)} required />
-          </div>
+          {!initialRestaurant ? (
+            <>
+              {/* 라멘집 이름 입력 필드 */}
+              <div className='form-group'>
+                <label htmlFor='name'>라멘집 이름:</label>
+                <input type='text' id='name' value={name} onChange={(e) => setName(e.target.value)} required />
+              </div>
 
-          {/* 라멘집 위치 입력 필드 */}
-          <div className='form-group'>
-            <label htmlFor='location'>위치:</label>
-            <input type='text' id='location' value={location} onChange={(e) => setLocation(e.target.value)} required />
-          </div>
+              {/* 라멘집 위치 입력 필드 */}
+              <div className='form-group'>
+                <label htmlFor='location'>위치:</label>
+                <input type='text' id='location' value={location} onChange={(e) => setLocation(e.target.value)} required />
+              </div>
 
-          {/* 라멘집 이미지 파일 업로드 필드 */}
-          <div className='form-group'>
-            <label htmlFor='bannerImage'>라멘집 메인 사진:</label>
-            <input
-              type='file'
-              id='bannerImage'
-              name='bannerImage'
-              accept='image/*'
-              onChange={(e) => setBannerImageFile(e.target.files?.[0])}
-            />
-            {bannerImageFile && <p style={{ fontSize: '12px', color: '#666' }}>선택된 파일: {bannerImageFile.name}</p>}
-            {!bannerImageFile && <p style={{ fontSize: '12px', color: '#999' }}>파일 미선택 시 기본 이미지가 사용됩니다.</p>}
-          </div>
+              {/* 라멘집 이미지 파일 업로드 필드 */}
+              <div className='form-group'>
+                <label htmlFor='bannerImage'>라멘집 메인 사진:</label>
+                <input
+                  type='file'
+                  id='bannerImage'
+                  name='bannerImage'
+                  accept='image/*'
+                  onChange={(e) => setBannerImageFile(e.target.files?.[0])}
+                />
+                {bannerImageFile && <p style={{ fontSize: '12px', color: '#666' }}>선택된 파일: {bannerImageFile.name}</p>}
+                {!bannerImageFile && <p style={{ fontSize: '12px', color: '#999' }}>파일 미선택 시 기본 이미지가 사용됩니다.</p>}
+              </div>
+            </>
+          ) : (
+            <>
+              <div className='revisit-info-display'>
+                <h3>재방문 식당: {initialRestaurant.name}</h3>
+                <p>
+                  <i className='fas fa-map-marker-alt'></i>
+                  {initialRestaurant.location}
+                </p>
+                {initialRestaurant.bannerImageUrl && (
+                  <img src={initialRestaurant.bannerImageUrl} alt={initialRestaurant.name} className='revisit-modal-img' />
+                )}
+              </div>
+            </>
+          )}
 
           {/* 태그 선택 필드*/}
           <div className='form-group'>
@@ -132,7 +152,7 @@ const AddVisitedRamenModal = ({ isOpen, onClose }) => {
           {/* 라멘집 방문 일자 입력 필드*/}
           <div className='form-group'>
             <label htmlFor='visitDate'>방문 날짜:</label>
-            <input type='date' id='visitDate' value={visitDate} onChange={(e) => setVisitDate(e.target.value)} required />
+            <input type='date' id='visitDate' value={visitDate} onChange={(e) => setVisitDate(e.target.value)} max={maxDate} required />
           </div>
 
           {/* 함께 방문한 멤버 입력 필드*/}
@@ -140,25 +160,33 @@ const AddVisitedRamenModal = ({ isOpen, onClose }) => {
             <label>함께 방문한 멤버:</label>
             <div className='members-checkbox-group'>
               {members?.map((member) => (
-                <div key={member._id} className='member-checkbox-item'>
-                  <input
-                    type='checkbox'
-                    id={`member-${member._id}`}
-                    value={member.name} // 멤버 이름이 value로 들어갑니다.
-                    checked={selectedMembers.includes(member.name)} // 선택 여부
-                    onChange={handleMemberCheckboxChange}
-                  />
-                  <label htmlFor={`member-${member._id}`}>{member.name}</label>
-                </div>
+                <>
+                  <div
+                    key={member._id}
+                    className={`member-checkbox-item ${selectedMembers.includes(member.name) ? 'selected' : ''}`}
+                    onClick={() => handleMemberItemClick(member.name)}
+                  >
+                    <input
+                      type='checkbox'
+                      id={`member-${member._id}`}
+                      value={member.name}
+                      checked={selectedMembers.includes(member.name)}
+                      readOnly
+                      style={{ display: 'none' }}
+                    />
+                    <UserProfileImage user={member} size={34} />
+                    <span htmlFor={`member-${member._id}`}>{member.name}</span>
+                  </div>
+                </>
               ))}
             </div>
           </div>
 
           <div className='modal-actions'>
             <button type='submit' disabled={addVisitedRamenMutation.isPending}>
-              {addVisitedRamenMutation.isPending ? '추가 중...' : '개척하기'}
+              {addVisitedRamenMutation.isPending ? '추가 중...' : initialRestaurant ? '재방문 기록하기' : '개척하기'}
             </button>
-            <button type='button' onClick={onClose} disabled={addVisitedRamenMutation.isPending}>
+            <button type='button' onClick={handleCloseClick} disabled={addVisitedRamenMutation.isPending}>
               닫기
             </button>
           </div>

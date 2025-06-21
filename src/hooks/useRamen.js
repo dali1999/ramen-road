@@ -2,6 +2,8 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   addMember,
   getMembers,
+  getMyProfile,
+  updateMyProfile,
   addVisitedRamen,
   getVisitedRamenRestaurants,
   getVisitedRamenRestaurantById,
@@ -11,7 +13,9 @@ import {
   getPlannedRamenRestaurantById,
   deleteVisitedRamenRestaurantById,
   deletePlannedRamenRestaurantById,
+  deleteMemberById,
 } from '../api';
+import { useAuth } from '@context/AuthContext';
 
 // --- 멤버 관련 훅 ---
 export const useMembers = () => {
@@ -21,15 +25,56 @@ export const useMembers = () => {
   });
 };
 
-export const useAddMember = () => {
+export const useMyProfile = () => {
+  const { user } = useAuth();
+  const queryEnabled = !!user?.member;
+
+  return useQuery({
+    queryKey: ['myProfile', user?.member?._id], // 유저 ID가 변경되면 쿼리 다시 실행
+    queryFn: getMyProfile,
+    enabled: queryEnabled, // 로그인 상태일 때만 쿼리 실행
+    staleTime: 1000 * 60 * 5, // 5분 동안 캐시 유효 (너무 자주 호출될 필요 없음)
+    cacheTime: 1000 * 60 * 10,
+  });
+};
+
+export const useUpdateMyProfile = () => {
   const queryClient = useQueryClient();
+  const { user, setUser } = useAuth();
+
   return useMutation({
-    mutationFn: addMember,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['members'] }); // 멤버 목록 갱신
+    mutationFn: (payload) => updateMyProfile(payload),
+    onSuccess: (data) => {
+      alert(data.message || '회원 정보가 성공적으로 업데이트되었습니다!');
+      localStorage.setItem('member', JSON.stringify(data.member));
+      setUser((prevUser) => ({
+        ...prevUser,
+        member: data.member,
+      }));
+      queryClient.invalidateQueries({ queryKey: ['myProfile', user?.member?._id] });
+      queryClient.invalidateQueries({ queryKey: ['members'] });
     },
     onError: (error) => {
-      alert(`멤버 추가 실패: ${error.response?.data?.message || error.message}`);
+      alert(`회원 정보 업데이트 실패: ${error.response?.data?.message || error.message}`);
+    },
+  });
+};
+
+export const useDeleteMember = () => {
+  const queryClient = useQueryClient();
+  const { logout } = useAuth();
+  return useMutation({
+    mutationFn: deleteMemberById,
+    onSuccess: (_, deletedMemberId) => {
+      alert('계정이 성공적으로 삭제되었습니다!');
+      const loggedInMember = JSON.parse(localStorage.getItem('member') || 'null');
+      if (loggedInMember && loggedInMember._id === deletedMemberId) {
+        logout();
+      }
+      queryClient.invalidateQueries({ queryKey: ['members'] });
+    },
+    onError: (error) => {
+      alert(`계정 삭제 실패: ${error.response?.data?.message || error.message}`);
     },
   });
 };

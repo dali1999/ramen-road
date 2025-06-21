@@ -71,7 +71,14 @@ const RegisterPage = () => {
           {/* 이미지 파일 업로드 필드 */}
           <div className='form-group'>
             <label htmlFor='profileImage'>프로필 이미지</label>
-            <input type='file' id='profileImage' name='profileImage' accept='image/*' onChange={(e) => setImageFile(e.target.files?.[0])} />
+            <input
+              type='file'
+              id='profileImage'
+              name='profileImage'
+              accept='image/*'
+              onChange={(e) => setImageFile(e.target.files?.[0])}
+              required
+            />
             {imageFile && <p style={{ fontSize: '12px', color: '#666' }}>선택된 파일: {imageFile.name}</p>}
           </div>
 

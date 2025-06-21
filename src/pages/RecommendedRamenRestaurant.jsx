@@ -6,7 +6,6 @@ const RecommendedRamenRestaurant = () => {
   const { id } = useParams();
 
   const { data: visitedRamenItem, isLoading, error } = usePlannedRamenRestaurant(id);
-  console.log(visitedRamenItem);
 
   if (isLoading) return <div className='loading-message'>라멘집 정보를 불러오는 중...</div>;
   if (error) return <div className='error-message'>오류 발생: {error.message}</div>;

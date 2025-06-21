@@ -9,6 +9,7 @@ import AddPlannedRamenModal from '@components/AddPlannedRamenModal';
 const RamenApp = () => {
   const { data: visitedRamenList, isLoading: isLoadingVisited } = useVisitedRamenRestaurants();
   const { data: RecommendedRamenList, isLoading: isLoadingRecommended } = usePlannedRamenRestaurants();
+  console.log(RecommendedRamenList);
 
   const [isVisitedModalOpen, setIsVisitedModalOpen] = useState(false);
   const [isPlannedModalOpen, setIsPlannedModalOpen] = useState(false);
@@ -21,23 +22,35 @@ const RamenApp = () => {
       <div className='restaurant-wrapper'>
         <div className='restaurant-section visited'>
           <div className='restaurant-grid-title visited'>
-            <h2 onClick={() => setIsVisitedModalOpen(true)}>🍜 라멘로드</h2>
+            <div>
+              <p>🍜 라멘로드</p>
+              <p onClick={() => setIsVisitedModalOpen(true)}>개척하기</p>
+            </div>
           </div>
           <div className='restaurant-grid visited'>
-            {visitedRamenList.reverse()?.map((restaurant, idx) => (
-              <VisitedRamenCard restaurant={restaurant} key={`${restaurant.id}_${idx}`} />
-            ))}
+            {visitedRamenList.length !== 0 ? (
+              visitedRamenList.map((restaurant, idx) => <VisitedRamenCard restaurant={restaurant} key={`${restaurant.id}_${idx}`} />)
+            ) : (
+              <p className='no-card-text'>아무도 개척하지 않았습니다</p>
+            )}
           </div>
         </div>
 
         <div className='restaurant-section planned'>
           <div className='restaurant-grid-title planned'>
-            <h2 onClick={() => setIsPlannedModalOpen(true)}>추천 라멘집 </h2>
+            <div>
+              <p>👍🏻 추천 라멘집</p>
+              <p onClick={() => setIsVisitedModalOpen(true)}>추천하기</p>
+            </div>
           </div>
           <div className='restaurant-grid planned'>
-            {RecommendedRamenList?.map((restaurant, idx) => (
-              <RecommendedRamenCard restaurant={restaurant} key={`${restaurant.id}_${idx}`} />
-            ))}
+            {RecommendedRamenList.length !== 0 ? (
+              RecommendedRamenList?.map((restaurant, idx) => (
+                <RecommendedRamenCard restaurant={restaurant} key={`${restaurant.id}_${idx}`} />
+              ))
+            ) : (
+              <p className='no-card-text'>아무도 추천하지 않았습니다</p>
+            )}
           </div>
         </div>
       </div>

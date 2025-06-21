@@ -25,36 +25,55 @@
 }
 
 .restaurant-grid-title {
-  font-size: 20px;
+  font-size: 16px;
   display: flex;
   justify-content: center;
 }
 
-.restaurant-grid-title h2 {
-  width: 300px;
-  border-radius: 8px;
+.restaurant-grid-title div {
   padding: 8px 0;
   margin: 20px 0;
-  cursor: pointer;
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.restaurant-grid-title h2::after {
+.restaurant-grid-title div::after {
   content: '';
   position: absolute;
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
-  width: 80px;
+  width: 200px;
   height: 5px;
   background-color: #ffab91; /* 연한 포인트 색상 */
   border-radius: 3px;
 }
 
-.restaurant-grid-title.visited h2 {
+.restaurant-grid-title div p:first-child {
+  font-size: 24px;
+  font-weight: 900;
+}
+.restaurant-grid-title div p:last-child {
+  border: 1px solid #df7d60;
+  color: white;
+  background-color: #ffab91;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding: 4px 6px;
+  cursor: pointer;
+  margin-bottom: 2px;
+  transition: all 0.2s ease;
 }
 
-.restaurant-grid-title.planned h2 {
+.restaurant-grid-title div p:last-child:hover {
+  border: 1px solid #df7d60;
+  color: white;
+  background-color: #f89a7e;
+  transform: translateY(-2px);
 }
 
 .restaurant-grid {
@@ -71,6 +90,11 @@
 
 .restaurant-grid.planned {
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.no-card-text {
+  color: #ffb387;
+  font-size: 16px;
 }
 
 @media (max-width: 767px) {

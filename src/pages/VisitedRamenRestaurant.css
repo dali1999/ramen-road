@@ -1,13 +1,12 @@
 /* 전체 컨테이너 및 기본 설정 */
 .restaurant-detail-container {
-  max-width: 1200px; /* 전체 컨테이너 최대 너비 축소 */
+  max-width: 1200px;
   width: 90vw;
   margin: 0 auto;
-  padding: 20px 15px; /* 패딩 축소 */
+  padding: 20px 15px;
   font-family: 'Noto Sans KR', sans-serif;
-  /* background-color: #f8f8f8; */
   box-sizing: border-box;
-  color: #333; /* 기본 글씨 색상 조정 */
+  color: #333;
 }
 
 /* 로딩/에러/데이터 없음 메시지 */
@@ -15,9 +14,9 @@
 .error-message,
 .not-found-message {
   text-align: center;
-  font-size: 1em; /* 글씨 크기 축소 */
+  font-size: 1em;
   color: #666;
-  padding: 30px; /* 패딩 축소 */
+  padding: 30px;
 }
 .error-message {
   color: #d94f4f;
@@ -27,11 +26,11 @@
 .restaurant-hero {
   position: relative;
   width: 100%;
-  height: 250px; /* 섹션 높이 축소 */
-  border-radius: 10px; /* 모서리 둥글기 축소 */
+  height: 250px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* 그림자 조정 */
-  margin-bottom: 30px; /* 하단 마진 축소 */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
 }
 
 .hero-background-image {
@@ -63,28 +62,28 @@
 }
 
 .restaurant-detail-name {
-  font-size: 2.2em; /* 이름 글씨 크기 축소 */
-  margin-bottom: 5px; /* 마진 축소 */
+  font-size: 2.2em;
+  margin-bottom: 5px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .restaurant-detail-location {
-  font-size: 0.9em; /* 위치 글씨 크기 축소 */
-  margin-bottom: 10px; /* 마진 축소 */
+  font-size: 0.9em;
+  margin-bottom: 10px;
   color: #ccc;
 }
 
 .restaurant-detail-rating {
-  font-size: 1.4em; /* 별점 글씨 크기 축소 */
+  font-size: 1.4em;
   color: #f4a261;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px; /* 간격 축소 */
+  gap: 8px;
 }
 
 .restaurant-detail-rating .stars {
-  letter-spacing: 1px; /* 별 사이 간격 축소 */
+  letter-spacing: 1px;
 }
 
 .restaurant-detail-rating .rating-value {
@@ -96,15 +95,15 @@
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  padding: 25px; /* 패딩 축소 */
-  margin-bottom: 30px; /* 마진 축소 */
+  padding: 25px;
+  margin-bottom: 30px;
 }
 
 .image-gallery-section h2,
 .visits-reviews-section h2 {
-  font-size: 1.6em; /* 제목 글씨 크기 축소 */
+  font-size: 1.6em;
   color: #333;
-  margin-bottom: 20px; /* 마진 축소 */
+  margin-bottom: 20px;
   text-align: center;
   font-weight: 700;
   position: relative;
@@ -115,10 +114,10 @@
   content: '';
   position: absolute;
   left: 50%;
-  bottom: -8px; /* 위치 조정 */
+  bottom: -8px;
   transform: translateX(-50%);
-  width: 40px; /* 길이 축소 */
-  height: 2px; /* 두께 축소 */
+  width: 40px;
+  height: 2px;
   background-color: #d94f4f;
   border-radius: 5px;
 }
@@ -126,15 +125,15 @@
 .image-gallery-scroll-wrapper {
   display: flex;
   overflow-x: auto;
-  gap: 10px; /* 간격 축소 */
-  padding-bottom: 10px; /* 패딩 축소 */
+  gap: 10px;
+  padding-bottom: 10px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: #d94f4f #f1f1f1;
 }
 
 .image-gallery-scroll-wrapper::-webkit-scrollbar {
-  height: 6px; /* 스크롤바 높이 축소 */
+  height: 6px;
 }
 
 .image-gallery-scroll-wrapper::-webkit-scrollbar-thumb {

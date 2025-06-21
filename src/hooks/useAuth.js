@@ -5,7 +5,10 @@ import { useEffect, useState } from 'react';
 // --- 멤버 관련 훅 ---
 export const useAuth = () => {
   const queryClient = useQueryClient();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    member: null,
+    token: null,
+  });
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -18,6 +21,7 @@ export const useAuth = () => {
         console.error('Failed to parse stored member data:', e);
         localStorage.removeItem('token');
         localStorage.removeItem('member');
+        setUser({ member: null, token: null });
       }
     }
   }, []);
@@ -62,6 +66,7 @@ export const useAuth = () => {
 
   return {
     user, // 현재 로그인한 사용자 정보 (member, token)
+    setUser,
     register: registerMutation.mutate, // 회원가입 함수
     login: loginMutation.mutate, // 로그인 함수
     logout, // 로그아웃 함수

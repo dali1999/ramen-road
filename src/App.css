@@ -13,3 +13,10 @@
 .content {
   /* padding: 20px; */
 }
+
+@media (max-width: 768px) {
+  .app {
+    padding-top: calc(80px + 30px);
+    padding-bottom: calc(160px);
+  }
+}

@@ -5,52 +5,21 @@
   align-items: center;
   border-radius: 50%;
   overflow: hidden;
-  justify-content: center; /* flex 자식 요소를 중앙에 정렬 */
-  flex-shrink: 0; /* ✨ 추가: 공간 부족 시 줄어들지 않도록 방지 ✨ */
-  position: relative; /* ✨ 추가: 후광을 위한 position ✨ */
-  box-sizing: border-box; /* 패딩과 보더가 width/height에 포함되도록 */
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  box-sizing: border-box;
+  background-color: white;
 }
 
 .member-item.admin-glow {
-  /* ✨ 변경: box-shadow 값을 더 조밀하고 은은하게 조정 ✨ */
   box-shadow:
     0 0 3px 1px gold,
     0 0 8px 3px rgba(255, 215, 0, 0.3),
     0 0 12px 5px rgba(255, 215, 0, 0.1);
-  /* animation: pulse-glow 2s infinite alternate; */
-}
-
-/* 후광 애니메이션 정의 */
-@keyframes pulse-glow {
-  from {
-    box-shadow:
-      0 0 3px 1px gold,
-      0 0 8px 3px rgba(255, 215, 0, 0.4),
-      0 0 12px 5px rgba(255, 215, 0, 0.2);
-  }
-  to {
-    /* ✨ 변경: 애니메이션 끝 상태의 값도 더 조밀하고 은은하게 조정 ✨ */
-    box-shadow:
-      0 0 5px 2px gold,
-      0 0 10px 4px rgba(255, 215, 0, 0.6),
-      0 0 16px 7px rgba(255, 215, 0, 0.3);
-  }
 }
 
 .member-avatar {
   object-fit: cover;
-  border-radius: 50%; /* 이미지가 원형 컨테이너에 맞게 잘리도록 */
+  border-radius: 50%;
 }
-
-/* 아래 두 선택자는 UserProfileImage 컴포넌트의 자식이 아니라,
-   부모 컴포넌트의 다른 요소에 있는 것일 가능성이 높습니다.
-   UserProfileImage 자체에는 span 태그나 border-bottom이 없습니다.
-   만약 UserProfileImage 컴포넌트가 ul/li 구조 내부에 사용된다면,
-   해당 부모 컴포넌트의 CSS에서 이 스타일을 관리하는 것이 좋습니다. */
-/* .member-item:last-child {
-  border-bottom: none;
-} */
-
-/* .member-item span {
-  font-size: 0.9em;
-} */
