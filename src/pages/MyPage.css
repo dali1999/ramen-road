@@ -1,12 +1,14 @@
 .profile-container {
   max-width: 900px;
-  margin: 80px auto 40px auto; /* 헤더 공간 확보 및 하단 마진 */
+  margin: 120px auto 40px auto; /* 헤더 공간 확보 및 하단 마진 */
   padding: 30px;
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   font-family: 'Noto Sans KR', sans-serif;
   color: #333;
+  width: 600px;
+  position: relative;
 }
 
 .profile-loading-message,
@@ -32,11 +34,16 @@
   border-bottom: 1px solid #eee;
 }
 
+.profile-image {
+  position: absolute;
+  top: -70px;
+}
+
 .profile-name {
   font-size: 24px;
   font-weight: 700;
   color: #d94f4f;
-  margin-top: 15px;
+  margin-top: 10px;
   margin-bottom: 5px;
 }
 
@@ -252,6 +259,7 @@
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   overflow: hidden;
+  cursor: pointer;
 }
 
 .ramen-item-img {
@@ -309,22 +317,25 @@
 @media (max-width: 768px) {
   .profile-container {
     padding: 20px;
-    margin-top: 70px; /* 모바일 헤더 높이에 맞춤 */
+    margin-top: 100px;
+    width: 94vw;
   }
 
   .profile-name {
-    font-size: 1.8em;
+    font-size: 1.4em;
+    margin-top: 20px;
   }
+
   .profile-email,
   .profile-role,
   .profile-joined-date {
-    font-size: 0.85em;
+    font-size: 0.7em;
   }
 
   .profile-stats-section h3,
   .profile-visited-ramen-section h3,
   .profile-recommended-ramen-section h3 {
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
 
   .stats-grid {

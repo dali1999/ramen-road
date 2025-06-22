@@ -6,7 +6,7 @@ import LogoIcon from '@assets/ramen-road-logo.png';
 
 const Header = () => {
   const navigate = useNavigate();
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   const handleLoginButtonClick = () => {
     navigate(`/login`);
@@ -36,8 +36,9 @@ const Header = () => {
         {/* 메뉴 */}
         <ul className='header-menu-list'>
           <li onClick={() => navigate('/')}>라멘로드</li> {/* 클릭 시 메인 페이지로 */}
-          <li onClick={() => navigate('/')}>추천</li>
-          <li onClick={() => navigate('/')}>공지</li>
+          <li onClick={() => navigate('/planning')}>추천</li>
+          <li onClick={() => navigate('/members')}>멤버들</li>
+          <li onClick={() => navigate('/planning')}>공지</li>
         </ul>
 
         {/* 내 정보, 인증 부분 */}
@@ -45,8 +46,6 @@ const Header = () => {
           <div className='header-auth-section'>
             <div className='header-auth-user-info' onClick={handleProfileClick}>
               <UserProfileImage user={user.member} size={36} />
-              {/* <span className='user-name'>{user.member.name}님</span> */}
-              {/* <span className='logout-text'>로그아웃</span> */}
             </div>
           </div>
         ) : (

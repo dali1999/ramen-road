@@ -7,6 +7,7 @@ import './VisitsGrid.css';
 
 const VisitsGrid = ({ user, id }) => {
   const { data: visitedRamenItem, refetch } = useVisitedRamenRestaurant(id);
+  // console.log(visitedRamenItem.visits[0].members[0].memberId);
   const updateRatingAndReviewMutation = useUpdateMemberRatingAndReview();
 
   // 별점/후기 제출 핸들러
@@ -19,11 +20,6 @@ const VisitsGrid = ({ user, id }) => {
       alert('0.5점부터 5점까지의 유효한 별점을 입력해주세요.');
       return;
     }
-
-    console.log('restaurantId: ', visitedRamenItem._id);
-    console.log('visitCount: ', visitCount);
-    console.log('memberName: ', memberName);
-    console.log('rating: ', newRating);
 
     try {
       await updateRatingAndReviewMutation.mutateAsync({
@@ -57,21 +53,22 @@ const VisitsGrid = ({ user, id }) => {
           <div className='members-review-list'>
             {visit.members.map((member) => {
               // 현재 로그인한 유저가 이 방문 기록의 멤버인지 확인
-              const isCurrentUser = user && user.member && user.member.name === member.name;
+              const isCurrentUser = user && user.member && user.member.name === member.memberId.name;
+
               return (
-                <div key={member.name} className='member-review-item'>
+                <div key={member.memberId.name} className='member-review-item'>
                   <div className='member-info'>
-                    <UserProfileImage user={member} size={36} />
+                    <UserProfileImage user={member.memberId} size={36} />
                   </div>
                   <div className='member-review-content'>
-                    <span className='member-name'>{member.name}</span>
+                    <span className='member-name'>{member.memberId.name}</span>
 
                     {/* !편집 모드 && 본인 방문 기록 */}
                     {isCurrentUser && editingRating?.visitCount !== visit.visit_count && (
                       <button
                         className='edit-review-button'
                         onClick={() => {
-                          setEditingRating({ visitCount: visit.visit_count, memberName: member.name });
+                          setEditingRating({ visitCount: visit.visit_count, memberName: member.memberId.name });
                           setNewRating(member.rating || 0); // 기존 별점 불러오기
                           setNewReviewText(member.reviewText); // 기존 후기 불러오기 (현재 후기 필드가 없으므로 임시 텍스트)
                         }}
@@ -82,7 +79,9 @@ const VisitsGrid = ({ user, id }) => {
                     )}
 
                     {/* 편집 모드 */}
-                    {isCurrentUser && editingRating?.visitCount === visit.visit_count && editingRating?.memberName === member.name ? (
+                    {isCurrentUser &&
+                    editingRating?.visitCount === visit.visit_count &&
+                    editingRating?.memberName === member.memberId.name ? (
                       <div className='review-input-area'>
                         <input
                           type='number'
@@ -96,12 +95,12 @@ const VisitsGrid = ({ user, id }) => {
                         <textarea
                           value={newReviewText}
                           onChange={(e) => setNewReviewText(e.target.value)}
-                          placeholder='라면 맛있었음?'
+                          placeholder='라멘 맛있었음?'
                           className='review-textarea'
                         ></textarea>
                         <div className='review-actions'>
                           <button
-                            onClick={() => handleRatingSubmit(visit.visit_count, member.name)}
+                            onClick={() => handleRatingSubmit(visit.visit_count, member.memberId.name)}
                             disabled={updateRatingAndReviewMutation.isPending}
                           >
                             {updateRatingAndReviewMutation.isPending ? '저장 중...' : '저장'}

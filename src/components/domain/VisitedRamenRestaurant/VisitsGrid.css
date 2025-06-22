@@ -145,7 +145,6 @@
   border-radius: 4px;
   font-size: 1em;
   text-align: center;
-  border: 1px solid red;
 }
 
 .rating-input[readonly] {
@@ -213,6 +212,9 @@ input[type='number'] {
   .visits-grid {
     grid-template-columns: 1fr;
   }
+  .visit-item {
+    padding: 14px;
+  }
   .member-avatar {
     width: 40px;
     height: 40px;
@@ -224,7 +226,9 @@ input[type='number'] {
     font-size: 0.8em;
   }
   .member-rating {
-    font-size: 1em;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
   }
   .edit-review-button {
     padding: 5px 10px;

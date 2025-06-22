@@ -90,7 +90,9 @@ const MyPage = () => {
   return (
     <div className='profile-container'>
       <section className='profile-header-section'>
-        <UserProfileImage user={myInfo} size={110} />
+        <div className='profile-image'>
+          <UserProfileImage user={myInfo} size={100} />
+        </div>
         {isEditing ? (
           <form onSubmit={handleUpdateSubmit} className='profile-edit-form'>
             <div className='form-group'>
@@ -166,7 +168,7 @@ const MyPage = () => {
         ) : (
           <div className='ramen-list-grid'>
             {myVisitedRamen.map((restaurant) => (
-              <div key={restaurant._id} className='ramen-item-card'>
+              <div key={restaurant._id} className='ramen-item-card' onClick={() => navigate(`/restaurant/${restaurant._id}`)}>
                 <img src={restaurant.bannerImageUrl} alt={restaurant.name} className='ramen-item-img' />
                 <div className='ramen-item-info'>
                   <h4>{restaurant.name}</h4>
@@ -175,6 +177,7 @@ const MyPage = () => {
                   <div className='my-visits-summary'>
                     <h5>나의 방문 기록 ({restaurant.myVisits.length}회)</h5>
                     <ul>
+                      {console.log(restaurant)}
                       {restaurant.myVisits.map((myVisit) => (
                         <li key={myVisit.visit_count}>
                           #{myVisit.visit_count}차 방문 ({new Date(myVisit.visit_date).toLocaleDateString('ko-KR')})

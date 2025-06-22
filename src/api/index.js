@@ -132,3 +132,16 @@ export const deleteMemberById = async (memberId) => {
   const response = await api.delete(`/api/members/${memberId}`);
   return response.data;
 };
+
+// ✨ 추가: 라멘집 이미지 업데이트 API 함수 ✨
+// payload는 FormData가 될 것입니다.
+export const updateRamenImages = async (restaurantId, payload) => {
+  const response = await api.patch(`/api/visited-ramen/${restaurantId}/images`, payload);
+  return response.data;
+};
+
+// ✨ 추가: 라멘집 이미지 조회 API 함수 ✨
+export const getRamenImages = async (restaurantId) => {
+  const response = await api.get(`/api/visited-ramen/${restaurantId}/images`);
+  return response.data;
+};

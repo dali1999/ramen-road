@@ -1,6 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
-  addMember,
   getMembers,
   getMyProfile,
   updateMyProfile,
@@ -14,6 +13,8 @@ import {
   deleteVisitedRamenRestaurantById,
   deletePlannedRamenRestaurantById,
   deleteMemberById,
+  updateRamenImages,
+  getRamenImages,
 } from '../api';
 import { useAuth } from '@context/AuthContext';
 
@@ -52,7 +53,7 @@ export const useUpdateMyProfile = () => {
         member: data.member,
       }));
       queryClient.invalidateQueries({ queryKey: ['myProfile', user?.member?._id] });
-      queryClient.invalidateQueries({ queryKey: ['members'] });
+      queryClient.invalidateQueries({ queryKey: ['members', 'visitedRamen', 'plannedRamen'] });
     },
     onError: (error) => {
       alert(`회원 정보 업데이트 실패: ${error.response?.data?.message || error.message}`);
@@ -137,6 +138,32 @@ export const useUpdateMemberRatingAndReview = () => {
     },
     onError: (error) => {
       alert(`별점 및 후기 업데이트 실패: ${error.response?.data?.message || error.message}`);
+    },
+  });
+};
+
+export const useRamenImages = (restaurantId) => {
+  return useQuery({
+    queryKey: ['ramenImages', restaurantId],
+    queryFn: () => getRamenImages(restaurantId),
+    enabled: !!restaurantId, // restaurantId가 있을 때만 쿼리 실행
+    staleTime: 1000 * 60 * 5,
+  });
+};
+
+export const useUpdateRamenImages = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ restaurantId, payload }) => updateRamenImages(restaurantId, payload),
+    onSuccess: (data, variables) => {
+      alert(data.message || '라멘집 이미지가 성공적으로 업데이트되었습니다!');
+      queryClient.invalidateQueries({ queryKey: ['visitedRamen'] });
+      queryClient.invalidateQueries({ queryKey: ['visitedRamen', variables.restaurantId] });
+      queryClient.invalidateQueries({ queryKey: ['ramenImages', variables.restaurantId] });
+    },
+    onError: (error) => {
+      alert(`이미지 업데이트 실패: ${error.response?.data?.message || error.message}`);
     },
   });
 };

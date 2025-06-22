@@ -46,31 +46,37 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 100%); /* 오버레이 진하게 */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.5) 100%); /* 오버레이 진하게 */
   z-index: 1;
 }
 
 .hero-content {
   position: absolute;
   bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
   padding: 20px; /* 패딩 축소 */
   color: white;
   text-align: center;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .restaurant-detail-name {
   font-size: 2.2em;
   margin-bottom: 5px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  font-family: 'Gowun Batang', serif;
 }
 
 .restaurant-detail-location {
   font-size: 0.9em;
   margin-bottom: 10px;
-  color: #ccc;
+  color: #e1e1e1;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .restaurant-detail-rating {
@@ -91,19 +97,20 @@
 }
 
 /* --- 이미지 갤러리 섹션 --- */
-.image-gallery-section {
+.image-gallery-section,
+.visits-reviews-section {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  padding: 25px;
+  padding: 14px 20px 20px;
   margin-bottom: 30px;
+  position: relative;
 }
 
 .image-gallery-section h2,
 .visits-reviews-section h2 {
   font-size: 1.6em;
   color: #333;
-  margin-bottom: 20px;
   text-align: center;
   font-weight: 700;
   position: relative;
@@ -150,14 +157,6 @@
   flex-shrink: 0;
 }
 
-/* --- 방문 기록 및 리뷰 섹션 --- */
-.visits-reviews-section {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  padding: 25px;
-}
-
 .no-visits-message {
   text-align: center;
   color: #999;
@@ -169,10 +168,11 @@
 @media (max-width: 768px) {
   .restaurant-detail-container {
     padding: 20px 10px;
-    width: 90vw;
+    width: 100vw;
   }
   .restaurant-hero {
-    height: 200px;
+    height: 180px;
+    margin-bottom: 12px;
   }
   .restaurant-detail-name {
     font-size: 1.8em;
@@ -185,11 +185,12 @@
   }
   .image-gallery-section,
   .visits-reviews-section {
-    padding: 20px;
+    padding: 12px;
+    margin-bottom: 12px;
   }
   .image-gallery-section h2,
   .visits-reviews-section h2 {
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
   .gallery-image {
     width: 150px;

@@ -9,7 +9,6 @@ import AddVisitedRamenModal from './AddVisitedRamenModal';
 import './VisitedRamenCard.css';
 
 const VisitedRamenCard = ({ restaurant }) => {
-  console.log(restaurant);
   const navigate = useNavigate();
   const deleteVisitedRamenRestaurantById = useDeleteVisitedRamenRestaurant();
   const { user } = useAuth();
@@ -94,14 +93,14 @@ const VisitedRamenCard = ({ restaurant }) => {
                 <ul>
                   {visit.members.map((member, idx) => (
                     <li
-                      key={member.name}
+                      key={member.memberId.name}
                       style={{
                         zIndex: idx,
                         left: `${idx * 20}px`,
                         top: 2,
                       }}
                     >
-                      <UserProfileImage user={member} size={28} />
+                      <UserProfileImage user={member.memberId} size={28} />
                     </li>
                   ))}
 

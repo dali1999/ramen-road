@@ -127,6 +127,12 @@ const AddVisitedRamenModal = ({ initialRestaurant = null, isOpen, onClose }) => 
                 {bannerImageFile && <p style={{ fontSize: '12px', color: '#666' }}>선택된 파일: {bannerImageFile.name}</p>}
                 {!bannerImageFile && <p style={{ fontSize: '12px', color: '#999' }}>파일 미선택 시 기본 이미지가 사용됩니다.</p>}
               </div>
+
+              {/* 태그 선택 필드*/}
+              <div className='form-group'>
+                <label>태그 선택:</label>
+                <CardTags onSelectTags={setSelectedTags} initialSelectedTags={selectedTags} />
+              </div>
             </>
           ) : (
             <>
@@ -142,12 +148,6 @@ const AddVisitedRamenModal = ({ initialRestaurant = null, isOpen, onClose }) => 
               </div>
             </>
           )}
-
-          {/* 태그 선택 필드*/}
-          <div className='form-group'>
-            <label>태그 선택:</label>
-            <CardTags onSelectTags={setSelectedTags} initialSelectedTags={selectedTags} />
-          </div>
 
           {/* 라멘집 방문 일자 입력 필드*/}
           <div className='form-group'>

@@ -1,0 +1,156 @@
+.image-gallery-controls {
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 정렬 */
+  gap: 10px;
+  margin-bottom: 15px;
+  padding-top: 10px; /* 제목과의 간격 */
+}
+
+.gallery-control-button {
+  background-color: #f9bd8b; /* 기본 색상 (사진 추가/교체) */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  font-size: 1.3em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  position: absolute;
+  top: 20px;
+}
+
+.gallery-control-button.active-upload-mode {
+  background-color: #d94f4f;
+  font-size: 0.85em;
+}
+
+.gallery-control-button.clear-button {
+  background-color: #6c757d;
+  font-size: 0.85em;
+}
+
+.gallery-control-button.clear-button:hover:not(:disabled) {
+  background-color: #545b62;
+}
+
+.gallery-control-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* --- 이미지 갤러리 섹션 --- */
+.image-gallery-scroll-wrapper {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #e4b187 #f1f1f1;
+}
+
+.image-gallery-scroll-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.image-gallery-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #e4b187;
+  border-radius: 10px;
+}
+
+.gallery-image {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+/* ✨ 추가: 이미지 업로드 폼 스타일 ✨ */
+.image-upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px dashed #ddd;
+  border-radius: 8px;
+  align-items: center; /* 중앙 정렬 */
+}
+
+.image-upload-form input[type='file'] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.image-upload-form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.image-upload-form button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.image-upload-form button:disabled {
+  background-color: #a0c4ff;
+  cursor: not-allowed;
+}
+
+.no-images-message {
+  width: 100%;
+  font-size: 12px;
+  color: #ccc;
+}
+
+@media (max-width: 768px) {
+  .image-gallery-section {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .image-gallery-controls {
+    margin-bottom: 20px;
+    padding-top: 4px;
+  }
+
+  .gallery-control-button {
+    border-radius: 5px;
+    padding: 6px 16px;
+    font-size: 1.3em;
+    top: 12px;
+  }
+
+  .image-gallery-scroll-wrapper {
+    gap: 8px;
+  }
+
+  .gallery-image {
+    width: 130px;
+    height: 130px;
+  }
+
+  .image-upload-form {
+    gap: 10px;
+    margin-bottom: 12px;
+    padding: 8px;
+  }
+
+  .image-upload-form button {
+    border-radius: 5px;
+    padding: 6px 20px;
+    font-size: 14px;
+  }
+}

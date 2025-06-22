@@ -12,6 +12,8 @@ import RegisterPage from './pages/RegisterPage.jsx';
 import Header from './components/layout/Header.jsx';
 import Footer from './components/layout/Footer.jsx';
 import MyPage from './pages/MyPage.jsx';
+import PlanningPage from './pages/PlanningPage.jsx';
+import MembersPage from './pages/MembersPage.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,6 +48,10 @@ function App() {
                   <Route path='/mypage' element={<MyPage />} />
                   <Route path='/restaurant/:id' element={<VisitedRamenRestaurant />} />
                   <Route path='/recommended/:id' element={<RecommendedRamenRestaurant />} />
+
+                  {/* 메뉴 */}
+                  <Route path='/planning' element={<PlanningPage />} />
+                  <Route path='/members' element={<MembersPage />} />
                 </Route>
               </Routes>
             </main>

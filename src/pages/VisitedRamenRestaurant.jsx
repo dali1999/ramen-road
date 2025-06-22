@@ -4,6 +4,7 @@ import { useVisitedRamenRestaurant } from '@hooks/useRamen';
 import { useAuth } from '@context/AuthContext';
 import VisitsGrid from '@components/domain/VisitedRamenRestaurant/VisitsGrid';
 import StarRating from '@components/common/StarRating';
+import ImageGallery from '@components/domain/VisitedRamenRestaurant/ImageGallery';
 
 const VisitedRamenRestaurant = () => {
   const { id } = useParams();
@@ -34,12 +35,7 @@ const VisitedRamenRestaurant = () => {
 
       {/* 이미지 갤러리 섹션 */}
       <section className='image-gallery-section'>
-        <h2>갤러리</h2>
-        <div className='image-gallery-scroll-wrapper'>
-          {[...Array(Math.min(visitedRamenItem.visits.length + 2, 5))].map((_, i) => (
-            <img key={i} src={visitedRamenItem.bannerImageUrl} alt={`${visitedRamenItem.name} 이미지 ${i + 1}`} className='gallery-image' />
-          ))}
-        </div>
+        <ImageGallery id={id} />
       </section>
 
       {/* 방문 회차 및 멤버 리뷰 섹션 */}

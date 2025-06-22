@@ -172,3 +172,96 @@
   color: #c8c8c8;
   font-weight: 400;
 }
+
+/* 모바이 반응형 */
+@media (max-width: 480px) {
+  .restaurant-card {
+    width: 90%;
+  }
+
+  .revisit-button {
+    width: 100%;
+    height: 40px;
+    font-size: 22px;
+  }
+
+  .restaurant-backgroundImg-wrapper {
+    height: 180px;
+  }
+
+  .restaurant-backgroundImg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .restaurant-card-info {
+    padding: 10px 16px 10px 16px;
+    /* padding: 20px 20px 12px 20px; */
+  }
+
+  .restaurant-card-info h2 {
+    font-family: 'Gowun Batang', serif;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .restaurant-card-info .location {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-top: 3px;
+    color: #666;
+  }
+
+  .restaurant-card-info .location i {
+    margin-right: 8px;
+  }
+
+  .visits {
+    padding: 10px;
+
+    gap: 8px;
+  }
+
+  .visit-card {
+    border-left: 4px solid #f4a261;
+    padding: 10px;
+    background: #ffffff;
+    border-radius: 8px;
+  }
+
+  .visit-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .visit-count {
+    font-weight: 600;
+    color: #d94f4f;
+  }
+
+  .visit-date {
+    font-size: 0.85em;
+    color: #666;
+  }
+
+  .members ul {
+    height: 32px;
+  }
+
+  .rating {
+    color: #f4a261;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .rating.visit {
+    font-size: 18px;
+
+    gap: 4px;
+  }
+}
