@@ -40,7 +40,7 @@ const RamenApp = () => {
           <div className='restaurant-grid-title planned'>
             <div>
               <p>👍🏻 추천 라멘집</p>
-              <p onClick={() => setIsVisitedModalOpen(true)}>추천하기</p>
+              <p onClick={() => setIsPlannedModalOpen(true)}>추천하기</p>
             </div>
           </div>
           <div className='restaurant-grid planned'>
