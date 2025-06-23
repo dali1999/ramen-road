@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useAddPlannedRamen } from '@hooks/useRamen';
 import './AddVisitedRamenModal.css';
 
@@ -12,55 +12,49 @@ const AddPlannedRamenModal = ({ isOpen, onClose }) => {
   // --- 폼 상태 관리 ---
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
-  const [bannerImageUrl, setBannerImageUrl] = useState('');
-  const [recommendationComment, setRecommendationComment] = useState(''); // 선택된 멤버들의 이름
+  const [bannerImageUrl, setBannerImageUrl] = useState(null);
+  const [recommendationComment, setRecommendationComment] = useState('');
+
+  const resetFormStates = useCallback(() => {
+    setName('');
+    setLocation('');
+    setBannerImageUrl(null);
+    setRecommendationComment('');
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      resetFormStates();
+    }
+  }, [isOpen, resetFormStates]);
 
   if (!isOpen) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !location) {
-      alert('라멘집 이름과 위치는 필수입니다!');
+      alert('라멘집 이름, 위치, 추천자는 필수입니다!');
       return;
     }
-    const finalBannerImageUrl = bannerImageUrl.trim() === '' ? DEFAULT_BANNER_IMAGE : bannerImageUrl;
-    addPlannedRamenMutation.mutate(
-      {
-        name,
-        bannerImageUrl: finalBannerImageUrl,
-        location,
-        recommendationComment,
-      },
-      {
-        onSuccess: () => {
-          alert('새로운 라멘집 방문 기록이 성공적으로 추가되었습니다!');
-          setName('');
-          setLocation('');
-          setBannerImageUrl('');
-          setRecommendationComment('');
-          onClose(); // 모달 닫기
-        },
-        onError: (error) => {
-          alert(`라멘집 추가 실패: ${error.response?.data?.message || error.message}`);
-        },
-      },
-    );
-  };
 
-  // if (isLoadingMembers)
-  //   return (
-  //     <div className='modal-overlay'>
-  //       <div className='modal-content'>멤버 목록 로딩 중...</div>
-  //     </div>
-  //   );
-  // if (membersError)
-  //   return (
-  //     <div className='modal-overlay'>
-  //       <div className='modal-content' style={{ color: 'red' }}>
-  //         멤버 목록 로드 오류: {membersError.message}
-  //       </div>
-  //     </div>
-  //   );
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('location', location);
+    formData.append('recommendationComment', recommendationComment);
+    if (bannerImageUrl) {
+      formData.append('plannedBannerImage', bannerImageUrl);
+    }
+
+    addPlannedRamenMutation.mutate(formData, {
+      onSuccess: () => {
+        alert('새로운 방문 예정 라멘집이 성공적으로 추가되었습니다!');
+        onClose();
+      },
+      onError: (error) => {
+        alert(`방문 예정 라멘집 추가 실패: ${error.response?.data?.message || error.message}`);
+      },
+    });
+  };
 
   return (
     <div className='modal-overlay' onClick={onClose}>
@@ -77,7 +71,7 @@ const AddPlannedRamenModal = ({ isOpen, onClose }) => {
             <input type='text' id='location' value={location} onChange={(e) => setLocation(e.target.value)} required />
           </div>
 
-          <div className='form-group'>
+          {/* <div className='form-group'>
             <label htmlFor='image'>이미지 주소:</label>
             <input
               type='text'
@@ -86,6 +80,19 @@ const AddPlannedRamenModal = ({ isOpen, onClose }) => {
               onChange={(e) => setBannerImageUrl(e.target.value)}
               placeholder='이미지가 없을 시 기본 이미지가 들어갑니다'
             />
+          </div> */}
+
+          <div className='form-group'>
+            <label htmlFor='plannedBannerImage'>라멘집 메인 사진:</label>
+            <input
+              type='file'
+              id='plannedBannerImage'
+              name='plannedBannerImage'
+              accept='image/*'
+              onChange={(e) => setBannerImageUrl(e.target.files?.[0])}
+            />
+            {bannerImageUrl && <p style={{ fontSize: '12px', color: '#666' }}>선택된 파일: {bannerImageUrl.name}</p>}
+            {!bannerImageUrl && <p style={{ fontSize: '12px', color: '#999' }}>파일 미선택 시 기본 이미지가 사용됩니다.</p>}
           </div>
 
           <div className='form-group'>

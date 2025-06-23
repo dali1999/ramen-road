@@ -179,7 +179,7 @@ export const usePlannedRamenRestaurants = () => {
 export const useAddPlannedRamen = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: addPlannedRamen,
+    mutationFn: (payload) => addPlannedRamen(payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['plannedRamen'] }); // 예정 라멘집 목록 갱신
     },

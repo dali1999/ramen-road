@@ -59,8 +59,8 @@
 }
 
 .gallery-image {
-  width: 140px;
-  height: 140px;
+  width: auto;
+  height: 200px;
   object-fit: cover;
   border-radius: 6px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
@@ -116,11 +116,6 @@
 }
 
 @media (max-width: 768px) {
-  .image-gallery-section {
-    padding: 12px;
-    margin-bottom: 12px;
-  }
-
   .image-gallery-controls {
     margin-bottom: 20px;
     padding-top: 4px;
@@ -138,8 +133,8 @@
   }
 
   .gallery-image {
-    width: 130px;
-    height: 130px;
+    height: 150px;
+    border-radius: 4px;
   }
 
   .image-upload-form {

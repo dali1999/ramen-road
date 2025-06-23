@@ -76,7 +76,7 @@
 }
 
 .member-review-text {
-  font-size: 12px;
+  font-size: 14px;
 
   color: #444;
   line-height: 1.5;
@@ -153,13 +153,14 @@
 }
 
 .review-textarea {
-  width: 100%; /* 전체 너비 */
-  padding: 10px;
+  width: 100%;
+  padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 0.9em;
-  resize: vertical; /* 세로 크기 조절 가능 */
-  min-height: 60px; /* 최소 높이 */
+  resize: vertical;
+  min-height: 60px;
+  height: 100px;
 }
 
 .review-actions {

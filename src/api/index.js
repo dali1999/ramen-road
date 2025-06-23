@@ -99,7 +99,6 @@ export const updateMemberRatingAndReview = async (restaurantId, visitCount, memb
 // 7. 방문 예정 라멘집 추가
 export const addPlannedRamen = async (payload) => {
   const response = await api.post('/api/planned-ramen', payload);
-  console.log(response.data);
   return response.data;
 };
 

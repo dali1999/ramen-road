@@ -37,7 +37,6 @@ const VisitedRamenCard = ({ restaurant }) => {
   };
 
   const canDelete = user && user.member && (user.member.role === 'admin' || user.member._id === restaurant.createdBy);
-
   return (
     <>
       <div className='restaurant-card' onClick={() => handleCardClick(restaurant._id)}>
@@ -53,7 +52,10 @@ const VisitedRamenCard = ({ restaurant }) => {
 
         {/* 라멘집 이름, 주소 */}
         <div className='restaurant-card-info'>
-          <h2>{restaurant.name}</h2>
+          <div className='restaurant-card-info-name'>
+            <p>{restaurant.name}</p>
+            {restaurant.ratingAverage !== 0 && <p>{restaurant.ratingAverage.toFixed(1)}</p>}
+          </div>
           <p className='location'>
             <i className='fas fa-map-marker-alt'></i>
             {restaurant.location}

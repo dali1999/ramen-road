@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { useRamenImages, useUpdateRamenImages } from '@hooks/useRamen';
 import { useAuth } from '@context/AuthContext';
 import './ImageGallery.css';
+import { useParams } from 'react-router-dom';
 
-const ImageGallery = ({ id }) => {
+const ImageGallery = ({ images }) => {
+  const { id } = useParams();
   const { user } = useAuth();
-  const { data: ramenImagesData } = useRamenImages(id);
   const updateRamenImagesMutation = useUpdateRamenImages();
 
   const [isImageUploadMode, setIsImageUploadMode] = useState(false);
@@ -23,7 +24,6 @@ const ImageGallery = ({ id }) => {
     selectedNewImages.forEach((file) => {
       formData.append('images', file); // 백엔드 Multer 필드 이름과 일치
     });
-    console.log(id);
 
     try {
       await updateRamenImagesMutation.mutateAsync({
@@ -55,7 +55,6 @@ const ImageGallery = ({ id }) => {
     }
   };
 
-  const imagesToDisplay = ramenImagesData?.images || [];
   const canEditImages = user.member;
 
   return (
@@ -98,8 +97,8 @@ const ImageGallery = ({ id }) => {
       )}
 
       <div className='image-gallery-scroll-wrapper'>
-        {imagesToDisplay.length > 0 ? (
-          imagesToDisplay.map((imgUrl, i) => <img key={i} src={imgUrl} alt={imgUrl} className='gallery-image' />)
+        {images.length > 0 ? (
+          images.map((imgUrl, i) => <img key={i} src={imgUrl} alt={imgUrl} className='gallery-image' />)
         ) : (
           <p className='no-images-message'>등록된 이미지가 없습니다.</p>
         )}

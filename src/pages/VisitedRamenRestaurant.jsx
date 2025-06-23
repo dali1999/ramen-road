@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import './VisitedRamenRestaurant.css';
-import { useVisitedRamenRestaurant } from '@hooks/useRamen';
+import { useVisitedRamenRestaurant, useRamenImages } from '@hooks/useRamen';
 import { useAuth } from '@context/AuthContext';
 import VisitsGrid from '@components/domain/VisitedRamenRestaurant/VisitsGrid';
 import StarRating from '@components/common/StarRating';
@@ -10,10 +10,15 @@ const VisitedRamenRestaurant = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const { data: visitedRamenItem, isLoading, error } = useVisitedRamenRestaurant(id);
+  const { data: ramenImagesData } = useRamenImages(id);
 
   if (isLoading) return <div className='loading-message'>🍜 라멘집 정보를 불러오는 중...</div>;
   if (error) return <div className='error-message'>😔 오류가 발생했어요: {error.message}</div>;
   if (!visitedRamenItem) return <div className='not-found-message'>존재하지 않거나, 아직 등록되지 않은 라멘집입니다.</div>;
+
+  const ramenImages = ramenImagesData?.images || [];
+  // 배너 이미지는 기본적으로 갤러리에 추가
+  const imagesToDisplay = [...ramenImages, visitedRamenItem.bannerImageUrl];
 
   return (
     <div className='restaurant-detail-container'>
@@ -28,14 +33,14 @@ const VisitedRamenRestaurant = () => {
             <span className='stars'>
               {visitedRamenItem.ratingAverage > 0 ? <StarRating rating={visitedRamenItem.ratingAverage} /> : '아직 별점이 없어요'}
             </span>
-            {visitedRamenItem.ratingAverage > 0 && <span className='rating-value'>{visitedRamenItem.ratingAverage.toFixed(1)} / 5</span>}
+            {visitedRamenItem.ratingAverage > 0 && <span className='rating-value'>{visitedRamenItem.ratingAverage.toFixed(1)}</span>}
           </div>
         </div>
       </section>
 
       {/* 이미지 갤러리 섹션 */}
       <section className='image-gallery-section'>
-        <ImageGallery id={id} />
+        <ImageGallery images={imagesToDisplay} />
       </section>
 
       {/* 방문 회차 및 멤버 리뷰 섹션 */}

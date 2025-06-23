@@ -45,8 +45,8 @@ const RecommendedRamenCard = ({ restaurant }) => {
 
         <div className='recommended-info'>
           <div className='recommended-member'>
-            <li>
-              <UserProfileImage user={recommender} size={50} />
+            <li className='recommended-member-avatar-wrapper'>
+              <UserProfileImage user={recommender} size={46} />
             </li>
 
             <div className='recommended-text-wrapper'>

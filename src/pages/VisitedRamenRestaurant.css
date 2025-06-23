@@ -149,11 +149,11 @@
 }
 
 .gallery-image {
-  width: 180px; /* 이미지 너비 축소 */
+  width: 140px; /* 이미지 너비 축소 */
   height: 140px; /* 이미지 높이 축소 */
   object-fit: cover;
-  border-radius: 6px; /* 모서리 둥글기 축소 */
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); /* 그림자 조정 */
+  border-radius: 6px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
 }
 
@@ -190,10 +190,6 @@
   }
   .image-gallery-section h2,
   .visits-reviews-section h2 {
-    font-size: 1.2em;
-  }
-  .gallery-image {
-    width: 150px;
-    height: 120px;
+    font-size: 1.1em;
   }
 }

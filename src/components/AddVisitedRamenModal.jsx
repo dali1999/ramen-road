@@ -26,7 +26,9 @@ const AddVisitedRamenModal = ({ initialRestaurant = null, isOpen, onClose }) => 
   }, [initialRestaurant]);
 
   useEffect(() => {
-    resetFormStates();
+    if (isOpen) {
+      resetFormStates();
+    }
   }, [initialRestaurant, isOpen, resetFormStates]);
 
   if (!isOpen) return null;
@@ -62,10 +64,8 @@ const AddVisitedRamenModal = ({ initialRestaurant = null, isOpen, onClose }) => 
   const handleMemberItemClick = (memberName) => {
     setSelectedMembers((prevSelectedMembers) => {
       if (prevSelectedMembers.includes(memberName)) {
-        // 이미 선택된 멤버면 제거
         return prevSelectedMembers.filter((name) => name !== memberName);
       } else {
-        // 선택되지 않은 멤버면 추가
         return [...prevSelectedMembers, memberName];
       }
     });
