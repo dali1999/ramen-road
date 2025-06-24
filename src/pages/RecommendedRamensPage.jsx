@@ -37,7 +37,7 @@ const RecommendedRamensPage = () => {
               <p onClick={() => setIsScheduleModalOpen(true)}>일정 잡기</p>
             </div>
           </div>
-          <div className='restaurant-grid '>
+          <div className='restaurant-grid planned'>
             {schedules?.map((schedule) => (
               <VoteCard key={schedule._id} schedule={schedule} />
             ))}

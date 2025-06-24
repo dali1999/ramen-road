@@ -7,6 +7,7 @@ import { useAuth } from '@context/AuthContext';
 import { ALL_TAGS } from '@components/common/CardTags';
 import AddVisitedRamenModal from '@components/modal/AddVisitedRamenModal';
 import './VisitedRamenCard.css';
+import ImageWithWebp from '@components/common/ImageWebp';
 
 const VisitedRamenCard = ({ restaurant }) => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const VisitedRamenCard = ({ restaurant }) => {
         )}
 
         <div className='restaurant-backgroundImg-wrapper'>
-          <img src={restaurant.bannerImageUrl} className='restaurant-backgroundImg' draggable='false' />
+          <ImageWithWebp src={restaurant.bannerImageUrl} className='restaurant-backgroundImg' alt={restaurant.name} />
         </div>
 
         {/* 라멘집 이름, 주소 */}

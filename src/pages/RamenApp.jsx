@@ -9,7 +9,7 @@ import AddPlannedRamenModal from '@components/modal/AddPlannedRamenModal';
 const RamenApp = () => {
   const { data: visitedRamenList, isLoading: isLoadingVisited } = useVisitedRamenRestaurants();
   const { data: RecommendedRamenList, isLoading: isLoadingRecommended } = usePlannedRamenRestaurants();
-  console.log(RecommendedRamenList);
+  console.log(visitedRamenList);
 
   const [isVisitedModalOpen, setIsVisitedModalOpen] = useState(false);
   const [isPlannedModalOpen, setIsPlannedModalOpen] = useState(false);

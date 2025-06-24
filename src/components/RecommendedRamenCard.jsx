@@ -3,6 +3,7 @@ import { useDeletePlannedRamenRestaurant } from '@hooks/useRamen';
 import UserProfileImage from '@components/common/UserProfileImage';
 import { useAuth } from '@context/AuthContext';
 import './RecommendedRamenCard.css';
+import ImageWithWebp from '@components/common/ImageWebp';
 
 const RecommendedRamenCard = ({ restaurant }) => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const RecommendedRamenCard = ({ restaurant }) => {
         </div>
       )}
       <div className='recommended-restaurant-backgroundImg-wrapper'>
-        <img src={restaurant.bannerImageUrl} className='recommended-restaurant-backgroundImg' draggable='false' />
+        <ImageWithWebp src={restaurant.bannerImageUrl} className='recommended-restaurant-backgroundImg' alt={restaurant.name} />
       </div>
 
       <div className='recommended-restaurant-card-info-wrapper'>

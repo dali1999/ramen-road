@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import './RecommendedRamenInfoPage.css';
 import { usePlannedRamenRestaurant } from '@hooks/useRamen';
+import ImageWithWebp from '@components/common/ImageWebp';
 
 const RecommendedRamenInfoPage = () => {
   const { id } = useParams();
@@ -19,9 +20,7 @@ const RecommendedRamenInfoPage = () => {
           <p className='visited-restaurant-info-rating'>{visitedRamenItem.ratingAverage}</p>
         </div>
         <div className='visited-restaurant-info-images'>
-          <img className='visited-restaurant-main-image' src={visitedRamenItem.bannerImageUrl} alt={visitedRamenItem.name} />
-          <img className='visited-restaurant-main-image' src={visitedRamenItem.bannerImageUrl} alt={visitedRamenItem.name} />
-          <img className='visited-restaurant-main-image' src={visitedRamenItem.bannerImageUrl} alt={visitedRamenItem.name} />
+          <ImageWithWebp src={visitedRamenItem.bannerImageUrl} className='visited-restaurant-main-image' alt={visitedRamenItem.name} />
         </div>
       </div>
 

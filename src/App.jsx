@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -16,6 +16,7 @@ import RecommendedRamenInfoPage from './pages/RecommendedRamenInfoPage';
 // 메뉴 페이지
 import MembersPage from './pages/MembersPage.jsx';
 import RecommendedRamensPage from './pages/RecommendedRamensPage.jsx';
+import { useEffect } from 'react';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,11 +35,23 @@ const queryClient = new QueryClient({
   },
 });
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // 페이지 이동할 때마다 스크롤 맨 위로
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <BrowserRouter>
+          <ScrollToTop />
           <div className='app'>
             <Header />
             <main className='content'>

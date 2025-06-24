@@ -23,7 +23,6 @@
   font-style: italic;
 }
 
-
 /* 기존 */
 .restaurant-grid-title div {
   width: 100%;
@@ -47,8 +46,6 @@
   background-color: #ffab91; /* 연한 포인트 색상 */
   border-radius: 3px;
 }
-
-
 
 @media (max-width: 768px) {
 }

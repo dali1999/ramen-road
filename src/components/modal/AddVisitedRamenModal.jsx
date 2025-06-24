@@ -4,7 +4,8 @@ import CardTags from '@components/common/CardTags';
 import { useAuth } from '@context/AuthContext';
 
 import './AddVisitedRamenModal.css';
-import UserProfileImage from '../common/UserProfileImage';
+import UserProfileImage from '@components/common/UserProfileImage';
+import ImageWithWebp from '@components/common/ImageWebp';
 
 const AddVisitedRamenModal = ({ initialRestaurant = null, isOpen, onClose }) => {
   const { user } = useAuth();
@@ -146,7 +147,7 @@ const AddVisitedRamenModal = ({ initialRestaurant = null, isOpen, onClose }) => 
                   {initialRestaurant.location}
                 </p>
                 {initialRestaurant.bannerImageUrl && (
-                  <img src={initialRestaurant.bannerImageUrl} alt={initialRestaurant.name} className='revisit-modal-img' />
+                  <ImageWithWebp src={initialRestaurant.bannerImageUrl} className='revisit-modal-img' alt={initialRestaurant.name} />
                 )}
               </div>
             </>

@@ -4,8 +4,9 @@ import { useAuth } from '@context/AuthContext';
 import { useMyProfile, useDeleteMember, useUpdateMyProfile } from '@hooks/useRamen';
 import { useNavigate } from 'react-router-dom';
 import UserProfileImage from '@components/common/UserProfileImage';
-import './MyPage.css';
 import { useEffect, useState } from 'react';
+import ImageWithWebp from '@components/common/ImageWebp';
+import './MyPage.css';
 
 const MyPage = () => {
   const navigate = useNavigate();
@@ -169,7 +170,8 @@ const MyPage = () => {
           <div className='ramen-list-grid'>
             {myVisitedRamen.map((restaurant) => (
               <div key={restaurant._id} className='ramen-item-card' onClick={() => navigate(`/restaurant/${restaurant._id}`)}>
-                <img src={restaurant.bannerImageUrl} alt={restaurant.name} className='ramen-item-img' />
+                <ImageWithWebp src={restaurant.bannerImageUrl} className='ramen-item-img' alt={restaurant.name} />
+
                 <div className='ramen-item-info'>
                   <h4>{restaurant.name}</h4>
                   <p>{restaurant.location}</p>
@@ -204,7 +206,7 @@ const MyPage = () => {
           <div className='ramen-list-grid'>
             {myRecommendedRamen.map((ramen) => (
               <div key={ramen._id} className='ramen-item-card'>
-                <img src={ramen.bannerImageUrl} alt={ramen.name} className='ramen-item-img' />
+                <ImageWithWebp src={ramen.bannerImageUrl} className='ramen-item-img' alt={ramen.name} />
                 <div className='ramen-item-info'>
                   <h4>{ramen.name}</h4>
                   <p>{ramen.location}</p>

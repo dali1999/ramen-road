@@ -1,5 +1,6 @@
 import React from 'react';
 import './UserProfileImage.css';
+import ImageWithWebp from '@components/common/ImageWebp';
 
 const UserProfileImage = ({ user, size }) => {
   return (
@@ -11,15 +12,7 @@ const UserProfileImage = ({ user, size }) => {
         height: `${size}px`,
       }}
     >
-      <img
-        src={user.imageUrl}
-        alt={user.name}
-        className='member-avatar'
-        style={{
-          width: `${size}px`,
-          height: `${size}px`,
-        }}
-      />
+      <ImageWithWebp src={user.imageUrl} className='member-avatar' width={`${size}px`} height={`${size}px`} alt={user.name} />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { useAuth } from '@context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import UserProfileImage from '@components/common/UserProfileImage';
 import LogoIcon from '@assets/ramen-road-logo.png';
+import ImageWithWebp from '../common/ImageWebp';
 
 const Header = () => {
   const navigate = useNavigate();

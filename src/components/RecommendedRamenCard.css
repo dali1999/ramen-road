@@ -11,10 +11,6 @@
   height: fit-content;
 }
 
-.recommended-restaurant-card:hover {
-  transform: translateY(-4px);
-}
-
 .recommended-restaurant-backgroundImg-wrapper {
   width: 38%;
   position: relative;
@@ -111,10 +107,6 @@
     transition: transform 0.3s ease;
 
     height: fit-content;
-  }
-
-  .recommended-restaurant-card:hover {
-    transform: translateY(-3px);
   }
 
   .recommended-restaurant-backgroundImg-wrapper {

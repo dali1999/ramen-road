@@ -5,6 +5,7 @@ import { useAuth } from '@context/AuthContext';
 import VisitsGrid from '@components/domain/RamenInfoPage/VisitsGrid';
 import StarRating from '@components/common/StarRating';
 import ImageGallery from '@components/domain/RamenInfoPage/ImageGallery';
+import ImageWithWebp from '../components/common/ImageWebp';
 
 const VisitedRamenInfoPage = () => {
   const { id } = useParams();
@@ -25,7 +26,8 @@ const VisitedRamenInfoPage = () => {
       {/* Hero Section */}
       <section className='restaurant-hero'>
         <div className='hero-overlay'></div>
-        <img src={visitedRamenItem.bannerImageUrl} alt={visitedRamenItem.name} className='hero-background-image' />
+        <ImageWithWebp src={visitedRamenItem.bannerImageUrl} className='hero-background-image' alt={visitedRamenItem.name} />
+
         <div className='hero-content'>
           <h1 className='restaurant-detail-name'>{visitedRamenItem.name}</h1>
           <p className='restaurant-detail-location'>{visitedRamenItem.location}</p>
