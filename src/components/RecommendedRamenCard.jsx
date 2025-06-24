@@ -21,13 +21,13 @@ const RecommendedRamenCard = ({ restaurant }) => {
     navigate(`/recommended/${id}`);
   };
 
-  const canDelete = user && user.member && (user.member.role === 'admin' || user.member._id === restaurant.createdBy);
+  const canDelete = user && user.member && (user.member.role === 'admin' || user.member._id === restaurant.recommendedBy._id);
 
   return (
     <div className='recommended-restaurant-card' onClick={() => handleCardClick(restaurant._id)}>
       {canDelete && (
         <div className='delete-button' onClick={handleDeleteClick}>
-          ...
+          ❌
         </div>
       )}
       <div className='recommended-restaurant-backgroundImg-wrapper'>
@@ -46,16 +46,18 @@ const RecommendedRamenCard = ({ restaurant }) => {
         <div className='recommended-info'>
           <div className='recommended-member'>
             <li className='recommended-member-avatar-wrapper'>
-              <UserProfileImage user={recommender} size={46} />
+              <UserProfileImage user={recommender} size={40} />
             </li>
 
-            <div className='recommended-text-wrapper'>
-              <div className='recommended-member-name'>
-                <p>추천인:</p>
-                <p>{recommender.name}</p>
-              </div>
-              <div className='recommended-text'>"{restaurant.recommendationComment}"</div>
+            <div className='recommended-member-name'>
+              <p>추천인</p>
+              <p>{recommender.name}</p>
             </div>
+          </div>
+          <div className='recommended-text'>
+            <span>"</span>
+            {restaurant.recommendationComment}
+            <span>"</span>
           </div>
         </div>
       </div>

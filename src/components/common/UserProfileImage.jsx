@@ -6,7 +6,7 @@ const UserProfileImage = ({ user, size }) => {
     <div
       className={`member-item ${user.role === 'admin' ? 'admin-glow' : ''}`}
       style={{
-        border: `${size * 0.05}px solid ${user.role === 'admin' ? 'gold' : '#7b7b7b'}`, // 어드민 테두리 색상 강조
+        border: `${size * 0.03}px solid ${user.role === 'admin' ? 'gold' : '#e2795f'}`, // 어드민 테두리 색상 강조
         width: `${size}px`,
         height: `${size}px`,
       }}

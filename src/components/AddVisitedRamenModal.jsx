@@ -1,10 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useAddVisitedRamen, useMembers } from '@hooks/useRamen';
 import CardTags from '@components/common/CardTags';
+import { useAuth } from '@context/AuthContext';
+
 import './AddVisitedRamenModal.css';
 import UserProfileImage from './common/UserProfileImage';
 
 const AddVisitedRamenModal = ({ initialRestaurant = null, isOpen, onClose }) => {
+  const { user } = useAuth();
+
   const { data: members, isLoading: isLoadingMembers, error: membersError } = useMembers();
   const addVisitedRamenMutation = useAddVisitedRamen();
 
@@ -14,16 +18,15 @@ const AddVisitedRamenModal = ({ initialRestaurant = null, isOpen, onClose }) => 
   const [visitDate, setVisitDate] = useState('');
   const [bannerImageFile, setBannerImageFile] = useState(null);
   const [selectedMembers, setSelectedMembers] = useState([]);
-  const [selectedTags, setSelectedTags] = useState([]);
-
+  const [selectedTags, setSelectedTags] = useState([user?.member?.name || null]);
   const resetFormStates = useCallback(() => {
     setName(initialRestaurant ? initialRestaurant.name : '');
     setLocation(initialRestaurant ? initialRestaurant.location : '');
     setVisitDate('');
     setBannerImageFile(null);
-    setSelectedMembers([]);
+    setSelectedMembers([user?.member?.name || null]);
     setSelectedTags(initialRestaurant && initialRestaurant.tags ? [...initialRestaurant.tags] : []);
-  }, [initialRestaurant]);
+  }, [initialRestaurant, user?.member?.name]);
 
   useEffect(() => {
     if (isOpen) {
