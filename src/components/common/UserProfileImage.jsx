@@ -12,7 +12,15 @@ const UserProfileImage = ({ user, size }) => {
         height: `${size}px`,
       }}
     >
-      <ImageWithWebp src={user.imageUrl} className='member-avatar' width={`${size}px`} height={`${size}px`} alt={user.name} />
+      <ImageWithWebp
+        src={user.imageUrl}
+        className='member-avatar'
+        style={{
+          width: `${size}px`,
+          height: `${size}px`,
+        }}
+        alt={user.name}
+      />
     </div>
   );
 };
