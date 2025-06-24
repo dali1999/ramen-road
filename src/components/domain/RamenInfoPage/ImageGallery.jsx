@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useRamenImages, useUpdateRamenImages } from '@hooks/useRamen';
+import { useUpdateRamenImages } from '@hooks/useRamen';
 import { useAuth } from '@context/AuthContext';
 import './ImageGallery.css';
 import { useParams } from 'react-router-dom';
@@ -99,7 +99,7 @@ const ImageGallery = ({ images }) => {
 
       <div className='image-gallery-scroll-wrapper'>
         {images.length > 0 ? (
-          images.map((imgUrl, i) => <ImageWithWebp filename={imgUrl} width={100} className='gallery-image' alt={imgUrl} />)
+          images.map((imgUrl, i) => <ImageWithWebp src={imgUrl} width={100} className='gallery-image' alt={imgUrl} />)
         ) : (
           <p className='no-images-message'>등록된 이미지가 없습니다.</p>
         )}

@@ -5,7 +5,7 @@ import { useAuth } from '@context/AuthContext';
 import VisitsGrid from '@components/domain/RamenInfoPage/VisitsGrid';
 import StarRating from '@components/common/StarRating';
 import ImageGallery from '@components/domain/RamenInfoPage/ImageGallery';
-import ImageWithWebp from '../components/common/ImageWebp';
+import ImageWithWebp from '@components/common/ImageWebp';
 
 const VisitedRamenInfoPage = () => {
   const { id } = useParams();
