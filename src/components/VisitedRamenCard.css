@@ -57,7 +57,6 @@
 }
 
 .restaurant-card:hover {
-  transform: translateY(-2px);
 }
 
 .restaurant-backgroundImg-wrapper {
