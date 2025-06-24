@@ -1,0 +1,166 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  width: 90%;
+  max-width: 550px; /* 너비 확장 */
+  max-height: 90vh; /* 높이 확장 */
+  overflow-y: auto;
+  position: relative;
+  animation: modalFadeIn 0.3s ease-out; /* 등장 애니메이션 */
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: #d94f4f; /* 라멘 레드 */
+  font-size: 26px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #444;
+  font-size: 1.05em;
+}
+
+.form-group input[type='text'],
+.form-group input[type='datetime-local'],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px; /* 더 둥글게 */
+  font-size: 16px;
+  box-sizing: border-box;
+  color: #333;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #f4a261; /* 라멘 오렌지 */
+  box-shadow: 0 0 0 3px rgba(244, 162, 97, 0.2); /* 은은한 포커스 효과 */
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.modal-actions {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.modal-actions button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px; /* 더 둥글게 */
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.modal-actions button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.modal-actions button[type='submit'] {
+  background-color: #d94f4f; /* 라멘 레드 */
+  color: white;
+}
+
+.modal-actions button[type='submit']:hover:not(:disabled) {
+  background-color: #c0392b;
+}
+
+.modal-actions button[type='submit']:disabled {
+  background-color: #f28d8d;
+  cursor: not-allowed;
+}
+
+.modal-actions button[type='button'] {
+  /* 닫기 버튼 */
+  background-color: #95a5a6; /* 회색 */
+  color: white;
+}
+
+.modal-actions button[type='button']:hover:not(:disabled) {
+  background-color: #7f8c8d;
+}
+
+/* 모바일 대응 (선택 사항) */
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 20px;
+    margin: 10px;
+  }
+  .modal-content h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    font-size: 0.95em;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 10px;
+    font-size: 14px;
+  }
+  .modal-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .modal-actions button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+  }
+}

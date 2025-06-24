@@ -5,7 +5,7 @@ import UserProfileImage from '@components/common/UserProfileImage';
 import StarRating from '@components/common/StarRating';
 import { useAuth } from '@context/AuthContext';
 import { ALL_TAGS } from '@components/common/CardTags';
-import AddVisitedRamenModal from './AddVisitedRamenModal';
+import AddVisitedRamenModal from '@components/modal/AddVisitedRamenModal';
 import './VisitedRamenCard.css';
 
 const VisitedRamenCard = ({ restaurant }) => {

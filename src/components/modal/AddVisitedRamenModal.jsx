@@ -4,7 +4,7 @@ import CardTags from '@components/common/CardTags';
 import { useAuth } from '@context/AuthContext';
 
 import './AddVisitedRamenModal.css';
-import UserProfileImage from './common/UserProfileImage';
+import UserProfileImage from '../common/UserProfileImage';
 
 const AddVisitedRamenModal = ({ initialRestaurant = null, isOpen, onClose }) => {
   const { user } = useAuth();

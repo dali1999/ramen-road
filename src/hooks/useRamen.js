@@ -15,6 +15,11 @@ import {
   deleteMemberById,
   updateRamenImages,
   getRamenImages,
+  //일정
+  createSchedule,
+  getSchedules,
+  joinSchedule,
+  leaveSchedule,
 } from '../api';
 import { useAuth } from '@context/AuthContext';
 
@@ -211,6 +216,62 @@ export const usePlannedRamenRestaurant = (restaurantId) => {
         throw new Error('Restaurant ID is required.');
       }
       return getPlannedRamenRestaurantById(restaurantId);
+    },
+  });
+};
+
+// ✨ 새로운 훅: 일정 생성 ✨
+export const useCreateSchedule = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: createSchedule,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['schedules'] }); // 일정 목록 갱신
+      alert('라멘로드 일정이 성공적으로 생성되었습니다!');
+    },
+    onError: (error) => {
+      alert(`일정 생성 실패: ${error.response?.data?.message || error.message}`);
+    },
+  });
+};
+
+// ✨ 새로운 훅: 모든 일정 조회 ✨
+export const useSchedules = () => {
+  return useQuery({
+    queryKey: ['schedules'],
+    queryFn: getSchedules,
+  });
+};
+
+// ✨ 새로운 훅: 일정 참여 ✨
+export const useJoinSchedule = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: joinSchedule,
+    onSuccess: (updatedSchedule) => {
+      queryClient.setQueryData(['schedules', updatedSchedule._id], updatedSchedule);
+      queryClient.invalidateQueries({ queryKey: ['schedules'] });
+      alert('일정에 참여했습니다!');
+    },
+    onError: (error) => {
+      alert(`일정 참여 실패: ${error.response?.data?.message || error.message}`);
+    },
+  });
+};
+
+// ✨ 새로운 훅: 일정 나가기 ✨
+export const useLeaveSchedule = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    // scheduleId를 인자로 받음
+    mutationFn: leaveSchedule,
+    onSuccess: (updatedSchedule) => {
+      queryClient.setQueryData(['schedules', updatedSchedule._id], updatedSchedule);
+      queryClient.invalidateQueries({ queryKey: ['schedules'] });
+      alert('일정에서 나갔습니다.');
+    },
+    onError: (error) => {
+      alert(`일정 나가기 실패: ${error.response?.data?.message || error.message}`);
     },
   });
 };

@@ -3,8 +3,8 @@ import { usePlannedRamenRestaurants, useVisitedRamenRestaurants } from '@hooks/u
 import VisitedRamenCard from '@components/VisitedRamenCard';
 import RecommendedRamenCard from '@components/RecommendedRamenCard';
 import { useState } from 'react';
-import AddVisitedRamenModal from '@components/AddVisitedRamenModal';
-import AddPlannedRamenModal from '@components/AddPlannedRamenModal';
+import AddVisitedRamenModal from '@components/modal/AddVisitedRamenModal';
+import AddPlannedRamenModal from '@components/modal/AddPlannedRamenModal';
 
 const RamenApp = () => {
   const { data: visitedRamenList, isLoading: isLoadingVisited } = useVisitedRamenRestaurants();
@@ -15,7 +15,7 @@ const RamenApp = () => {
   const [isPlannedModalOpen, setIsPlannedModalOpen] = useState(false);
 
   if (isLoadingVisited || isLoadingRecommended) {
-    return <div className='loading-full-page'>데이터를 불러오는 중입니다...</div>;
+    return <div className='loading-full-page'>라멘집을 불러오는 중입니다...</div>;
   }
   return (
     <div className='container'>

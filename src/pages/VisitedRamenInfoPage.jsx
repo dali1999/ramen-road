@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
-import './VisitedRamenRestaurant.css';
+import './VisitedRamenInfoPage.css';
 import { useVisitedRamenRestaurant, useRamenImages } from '@hooks/useRamen';
 import { useAuth } from '@context/AuthContext';
-import VisitsGrid from '@components/domain/VisitedRamenRestaurant/VisitsGrid';
+import VisitsGrid from '@components/domain/RamenInfoPage/VisitsGrid';
 import StarRating from '@components/common/StarRating';
-import ImageGallery from '@components/domain/VisitedRamenRestaurant/ImageGallery';
+import ImageGallery from '@components/domain/RamenInfoPage/ImageGallery';
 
-const VisitedRamenRestaurant = () => {
+const VisitedRamenInfoPage = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const { data: visitedRamenItem, isLoading, error } = useVisitedRamenRestaurant(id);
@@ -56,4 +56,4 @@ const VisitedRamenRestaurant = () => {
   );
 };
 
-export default VisitedRamenRestaurant;
+export default VisitedRamenInfoPage;

@@ -1,25 +1,27 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext.jsx';
-
-import './App.css';
-import RamenApp from './pages/RamenApp';
-import VisitedRamenRestaurant from './pages/VisitedRamenRestaurant';
-import RecommendedRamenRestaurant from './pages/RecommendedRamenRestaurant';
-import LoginPage from './pages/LoginPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import RegisterPage from './pages/RegisterPage.jsx';
+import './App.css';
+
 import Header from './components/layout/Header.jsx';
 import Footer from './components/layout/Footer.jsx';
+import RamenApp from './pages/RamenApp';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage.jsx';
 import MyPage from './pages/MyPage.jsx';
-import PlanningPage from './pages/PlanningPage.jsx';
+import VisitedRamenInfoPage from './pages/VisitedRamenInfoPage.jsx';
+import RecommendedRamenInfoPage from './pages/RecommendedRamenInfoPage';
+
+// 메뉴 페이지
 import MembersPage from './pages/MembersPage.jsx';
+import RecommendedRamensPage from './pages/RecommendedRamensPage.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       // 쿼리 실패 시 자동으로 3번 재시도
-      retry: 3,
+      retry: 1,
       // 데이터가 stale 상태로 간주되기 전까지의 시간 (기본 0ms, 여기선 5분)
       // 이 시간 동안은 캐시된 데이터를 사용하며, 백그라운드에서 다시 가져오지 않습니다.
       staleTime: 1000 * 60 * 5, // 5 minutes
@@ -46,11 +48,11 @@ function App() {
                   <Route path='/login' element={<LoginPage />} />
                   <Route path='/register' element={<RegisterPage />} />
                   <Route path='/mypage' element={<MyPage />} />
-                  <Route path='/restaurant/:id' element={<VisitedRamenRestaurant />} />
-                  <Route path='/recommended/:id' element={<RecommendedRamenRestaurant />} />
+                  <Route path='/restaurant/:id' element={<VisitedRamenInfoPage />} />
+                  <Route path='/recommended/:id' element={<RecommendedRamenInfoPage />} />
 
                   {/* 메뉴 */}
-                  <Route path='/planning' element={<PlanningPage />} />
+                  <Route path='/planning' element={<RecommendedRamensPage />} />
                   <Route path='/members' element={<MembersPage />} />
                 </Route>
               </Routes>

@@ -144,3 +144,27 @@ export const getRamenImages = async (restaurantId) => {
   const response = await api.get(`/api/visited-ramen/${restaurantId}/images`);
   return response.data;
 };
+
+// 11. 일정 생성 API
+export const createSchedule = async (payload) => {
+  const response = await api.post('/api/schedules', payload);
+  return response.data.schedule;
+};
+
+// 12. 모든 일정 조회 API
+export const getSchedules = async () => {
+  const response = await api.get('/api/schedules');
+  return response.data;
+};
+
+// 13. 일정 참여 API
+export const joinSchedule = async (scheduleId) => {
+  const response = await api.post(`/api/schedules/${scheduleId}/join`);
+  return response.data.schedule;
+};
+
+// 14. 일정 나가기 API
+export const leaveSchedule = async (scheduleId) => {
+  const response = await api.delete(`/api/schedules/${scheduleId}/leave`);
+  return response.data.schedule;
+};

@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
-import './RecommendedRamenRestaurant.css';
+import './RecommendedRamenInfoPage.css';
 import { usePlannedRamenRestaurant } from '@hooks/useRamen';
 
-const RecommendedRamenRestaurant = () => {
+const RecommendedRamenInfoPage = () => {
   const { id } = useParams();
 
   const { data: visitedRamenItem, isLoading, error } = usePlannedRamenRestaurant(id);
@@ -60,4 +60,4 @@ const RecommendedRamenRestaurant = () => {
   );
 };
 
-export default RecommendedRamenRestaurant;
+export default RecommendedRamenInfoPage;
