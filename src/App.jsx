@@ -17,6 +17,7 @@ import RecommendedRamenInfoPage from './pages/RecommendedRamenInfoPage';
 import MembersPage from './pages/MembersPage.jsx';
 import RecommendedRamensPage from './pages/RecommendedRamensPage.jsx';
 import { useEffect } from 'react';
+import VisitedRamensPage from './pages/VisitedRamensPage.jsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -65,6 +66,7 @@ function App() {
                   <Route path='/recommended/:id' element={<RecommendedRamenInfoPage />} />
 
                   {/* 메뉴 */}
+                  <Route path='/visited' element={<VisitedRamensPage />} />
                   <Route path='/planning' element={<RecommendedRamensPage />} />
                   <Route path='/members' element={<MembersPage />} />
                 </Route>

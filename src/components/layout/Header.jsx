@@ -36,7 +36,7 @@ const Header = () => {
       <div className='header-bottom-row'>
         {/* 메뉴 */}
         <ul className='header-menu-list'>
-          <li onClick={() => navigate('/')}>라멘로드</li> {/* 클릭 시 메인 페이지로 */}
+          <li onClick={() => navigate('/visited')}>라멘로드</li> {/* 클릭 시 메인 페이지로 */}
           <li onClick={() => navigate('/planning')}>일정 및 추천</li>
           <li onClick={() => navigate('/members')}>멤버들</li>
           <li onClick={() => navigate('/planning')}>공지</li>

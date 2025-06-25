@@ -1,25 +1,43 @@
 import './RamenApp.css';
-import { usePlannedRamenRestaurants, useVisitedRamenRestaurants } from '@hooks/useRamen';
+import { useState } from 'react';
+import { usePlannedRamenRestaurants, useVisitedRamenRestaurants, useSchedules } from '@hooks/useRamen';
 import VisitedRamenCard from '@components/VisitedRamenCard';
 import RecommendedRamenCard from '@components/RecommendedRamenCard';
-import { useState } from 'react';
 import AddVisitedRamenModal from '@components/modal/AddVisitedRamenModal';
 import AddPlannedRamenModal from '@components/modal/AddPlannedRamenModal';
+import CreateScheduleModal from '@components/modal/CreateScheduleModal';
+import VoteCard from '@components/VoteCard';
 
 const RamenApp = () => {
   const { data: visitedRamenList, isLoading: isLoadingVisited } = useVisitedRamenRestaurants();
   const { data: RecommendedRamenList, isLoading: isLoadingRecommended } = usePlannedRamenRestaurants();
-  console.log(visitedRamenList);
+  const { data: schedules, isLoading: isLoadingSchedules, error: schedulesError } = useSchedules();
 
+  const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
   const [isVisitedModalOpen, setIsVisitedModalOpen] = useState(false);
   const [isPlannedModalOpen, setIsPlannedModalOpen] = useState(false);
 
-  if (isLoadingVisited || isLoadingRecommended) {
-    return <div className='loading-full-page'>라멘집을 불러오는 중입니다...</div>;
+  if (isLoadingVisited || isLoadingRecommended || isLoadingSchedules) {
+    return <div className='loading-full-page'>라멘로드 떠나는 중...</div>;
   }
   return (
     <div className='container'>
       <div className='restaurant-wrapper'>
+        <div className='restaurant-section'>
+          <div className='restaurant-grid-title'>
+            <div>
+              <p>토벌 일정</p>
+              <p onClick={() => setIsScheduleModalOpen(true)}>일정 잡기</p>
+            </div>
+          </div>
+          <div className='restaurant-grid planned'>
+            {schedules?.map((schedule) => (
+              <VoteCard key={schedule._id} schedule={schedule} />
+            ))}
+            {schedules?.length === 0 && <p className='no-schedules-message'>아직 등록된 라멘로드 일정이 없습니다.</p>}
+          </div>
+        </div>
+
         <div className='restaurant-section visited'>
           <div className='restaurant-grid-title visited'>
             <div>
@@ -55,6 +73,7 @@ const RamenApp = () => {
         </div>
       </div>
 
+      <CreateScheduleModal isOpen={isScheduleModalOpen} onClose={() => setIsScheduleModalOpen(false)} />
       <AddVisitedRamenModal isOpen={isVisitedModalOpen} onClose={() => setIsVisitedModalOpen(false)} />
       <AddPlannedRamenModal isOpen={isPlannedModalOpen} onClose={() => setIsPlannedModalOpen(false)} />
     </div>

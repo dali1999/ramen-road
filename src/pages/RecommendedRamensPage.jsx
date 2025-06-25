@@ -13,8 +13,8 @@ const RecommendedRamensPage = () => {
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
   const [isPlannedModalOpen, setIsPlannedModalOpen] = useState(false);
 
-  if (isLoadingRecommended) {
-    return <div className='loading-full-page'>추천 라멘집을 불러오는 중입니다...</div>;
+  if (isLoadingRecommended || isLoadingSchedules) {
+    return <div className='loading-full-page'>추천 라멘집과 일정 불러오는 중...</div>;
   }
 
   return (

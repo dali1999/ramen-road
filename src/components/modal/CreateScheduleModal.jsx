@@ -102,7 +102,7 @@ const CreateScheduleModal = ({ isOpen, onClose }) => {
               id='title'
               value={scheduleTitle}
               onChange={(e) => setScheduleTitle(e.target.value)}
-              placeholder="예: 'OOO 라멘 정복!', '이번 주말 라멘팟'"
+              placeholder="예: '이번 주 라멘팟'"
               required
             />
           </div>
@@ -125,7 +125,7 @@ const CreateScheduleModal = ({ isOpen, onClose }) => {
               value={specialNotes}
               onChange={(e) => setSpecialNotes(e.target.value)}
               rows='3'
-              placeholder="예: 'OOO역 3번 출구 앞에서 모여요', '선착순 5명!' 등"
+              placeholder="예: 'OOO역 3번 출구 앞에서 모이자', '선착순 5명!'"
             ></textarea>
           </div>
 

@@ -78,9 +78,9 @@ const VoteCard = ({ schedule }) => {
             <p className='location'>{plannedRamen.location}</p>
           </div>
         </div>
-        <p className='organizer-info'>
+        <span className='organizer-info'>
           주최: <UserProfileImage user={organizer} size={36} /> {organizer.name}
-        </p>
+        </span>
         {schedule.specialNotes && <p className='special-notes'>{schedule.specialNotes}</p>}
 
         <div className='participants-section'>
