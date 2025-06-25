@@ -148,15 +148,6 @@
   border-radius: 10px;
 }
 
-.gallery-image {
-  width: 140px; /* 이미지 너비 축소 */
-  height: 140px; /* 이미지 높이 축소 */
-  object-fit: cover;
-  border-radius: 6px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
-}
-
 .no-visits-message {
   text-align: center;
   color: #999;

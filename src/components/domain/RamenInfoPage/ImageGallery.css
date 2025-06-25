@@ -65,6 +65,7 @@
   border-radius: 6px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 /* ✨ 추가: 이미지 업로드 폼 스타일 ✨ */

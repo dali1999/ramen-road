@@ -4,6 +4,7 @@ import { useAuth } from '@context/AuthContext';
 import './ImageGallery.css';
 import { useParams } from 'react-router-dom';
 import ImageWithWebp from '@components/common/ImageWebp';
+import ImageViewer from '../../common/ImageViewer';
 
 const ImageGallery = ({ images }) => {
   const { id } = useParams();
@@ -12,6 +13,8 @@ const ImageGallery = ({ images }) => {
 
   const [isImageUploadMode, setIsImageUploadMode] = useState(false);
   const [selectedNewImages, setSelectedNewImages] = useState([]);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   //  이미지 업로드 제출 핸들러
   const handleImageUploadSubmit = async (e) => {
@@ -54,6 +57,11 @@ const ImageGallery = ({ images }) => {
         console.error('모든 이미지 삭제 실패:', err);
       }
     }
+  };
+
+  const handleImageClick = (idx) => {
+    setIsViewerOpen(true);
+    setSelectedImageIndex(idx);
   };
 
   const canEditImages = user.member;
@@ -99,11 +107,16 @@ const ImageGallery = ({ images }) => {
 
       <div className='image-gallery-scroll-wrapper'>
         {images.length > 0 ? (
-          images.map((imgUrl, i) => <ImageWithWebp src={imgUrl} width={100} className='gallery-image' alt={imgUrl} />)
+          images.map((imgUrl, i) => (
+            <li onClick={() => handleImageClick(i)} key={`${imgUrl}_${i}`}>
+              <ImageWithWebp key={i} src={imgUrl} width={100} className='gallery-image' alt={imgUrl} />
+            </li>
+          ))
         ) : (
           <p className='no-images-message'>등록된 이미지가 없습니다.</p>
         )}
       </div>
+      <ImageViewer isOpen={isViewerOpen} onClose={() => setIsViewerOpen(false)} imageUrl={images[selectedImageIndex]} />
     </>
   );
 };
