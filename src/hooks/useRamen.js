@@ -6,6 +6,7 @@ import {
   addVisitedRamen,
   getVisitedRamenRestaurants,
   getVisitedRamenRestaurantById,
+  updateVisitedRamen,
   updateMemberRatingAndReview,
   addPlannedRamen,
   getPlannedRamenRestaurants,
@@ -132,6 +133,26 @@ export const useAddVisitedRamen = () => {
     },
   });
 };
+
+export const useUpdateVisitedRamen = () => {
+  const queryClient = useQueryClient();
+  const { user } = useAuth();
+
+  return useMutation({
+    mutationFn: ({ restaurantId, payload }) => updateVisitedRamen(restaurantId, payload),
+    onSuccess: (data, variables) => {
+      alert(data.message || '라멘집 정보가 성공적으로 업데이트되었습니다!');
+      queryClient.invalidateQueries({ queryKey: ['visitedRamen'] }); // 목록 갱신
+      queryClient.invalidateQueries({ queryKey: ['visitedRamen', variables.restaurantId] }); // 상세 정보 갱신
+      queryClient.invalidateQueries({ queryKey: ['ramenImages', variables.restaurantId] }); // 이미지 목록 갱신
+      queryClient.invalidateQueries({ queryKey: ['myProfile', user?.member?._id] }); // 내 프로필 갱신 (생성자라면)
+    },
+    onError: (error) => {
+      alert(`라멘집 정보 업데이트 실패: ${error.response?.data?.message || error.message}`);
+    },
+  });
+};
+
 
 export const useUpdateMemberRatingAndReview = () => {
   const queryClient = useQueryClient();

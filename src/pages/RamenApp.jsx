@@ -7,8 +7,11 @@ import AddVisitedRamenModal from '@components/modal/AddVisitedRamenModal';
 import AddPlannedRamenModal from '@components/modal/AddPlannedRamenModal';
 import CreateScheduleModal from '@components/modal/CreateScheduleModal';
 import VoteCard from '@components/VoteCard';
+import { useNavigate } from 'react-router-dom';
+import ImageWithWebp from '../components/common/ImageWebp';
 
 const RamenApp = () => {
+  const navigate = useNavigate();
   const { data: visitedRamenList, isLoading: isLoadingVisited } = useVisitedRamenRestaurants();
   const { data: RecommendedRamenList, isLoading: isLoadingRecommended } = usePlannedRamenRestaurants();
   const { data: schedules, isLoading: isLoadingSchedules, error: schedulesError } = useSchedules();
@@ -17,11 +20,31 @@ const RamenApp = () => {
   const [isVisitedModalOpen, setIsVisitedModalOpen] = useState(false);
   const [isPlannedModalOpen, setIsPlannedModalOpen] = useState(false);
 
+  const latestRamen = visitedRamenList && visitedRamenList.length > 0 ? visitedRamenList[0] : null;
+  console.log(latestRamen);
+
+  const handleBannerClick = () => {
+    if (latestRamen) {
+      navigate(`/restaurant/${latestRamen._id}`); // 최신 라멘집 상세 페이지로 이동
+    }
+  };
+
   if (isLoadingVisited || isLoadingRecommended || isLoadingSchedules) {
     return <div className='loading-full-page'>라멘로드 떠나는 중...</div>;
   }
   return (
     <div className='container'>
+      <section className='main-banner-section' onClick={latestRamen ? handleBannerClick : undefined}>
+        {/* <img src={latestRamen?.images[0]} alt='라멘로드 메인 배너' className='main-banner-image' /> */}
+        <ImageWithWebp src={latestRamen?.bannerImageUrl} alt='라멘로드 메인 배너' className='main-banner-image' />
+        <div className='main-banner-overlay'>
+          <>
+            <h1 className='banner-title'>라멘로드에 참여하세요</h1>
+            <p className='banner-description'>세상의 모든 라멘을 먹을때까지</p>
+          </>
+        </div>
+      </section>
+
       <div className='restaurant-wrapper'>
         <div className='restaurant-section'>
           <div className='restaurant-grid-title'>

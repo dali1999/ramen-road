@@ -8,6 +8,7 @@ import ImageWithWebp from '../common/ImageWebp';
 const Header = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  console.log(user);
 
   const handleLoginButtonClick = () => {
     navigate(`/login`);

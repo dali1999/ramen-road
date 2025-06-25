@@ -6,6 +6,7 @@ export const ALL_TAGS = [
   { label: '돈코츠 맛집', color: 'rgb(218, 178, 1)' },
   { label: '지로 맛집', color: 'rgb(150, 117, 8)' },
   { label: '시오 맛집', color: 'rgb(226, 200, 114)' },
+  { label: '토리파이탄 맛집', color: 'rgb(143, 143, 230)' },
   { label: '미소 맛집', color: 'rgb(209, 139, 91)' },
   { label: '츠케멘 맛집', color: 'rgb(62, 91, 152)' },
 
@@ -20,7 +21,12 @@ const CardTags = ({ onSelectTags, initialSelectedTags = [] }) => {
   // 선택된 태그 목록을 관리하는 상태
   const [selectedTags, setSelectedTags] = useState(initialSelectedTags);
 
-  // 선택 상태가 변경될 때마다 부모 컴포넌트로 전달 (useEffect 활용)
+  useEffect(() => {
+    if (JSON.stringify(selectedTags) !== JSON.stringify(initialSelectedTags)) {
+      setSelectedTags(initialSelectedTags);
+    }
+  }, [initialSelectedTags]);
+  
   useEffect(() => {
     if (onSelectTags) {
       onSelectTags(selectedTags);

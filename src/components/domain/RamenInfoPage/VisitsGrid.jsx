@@ -45,7 +45,7 @@ const VisitsGrid = ({ user, id }) => {
       {visitedRamenItem.visits.map((visit) => (
         <div key={visit.visit_count} className='visit-item'>
           <div className='visit-header'>
-            <h3>#{visit.visit_count}차 습격</h3>
+            <h3>#{visit.visit_count}차 습격 후기</h3>
             <span className='visit-date-display'>
               {new Date(visit.visit_date).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })}
             </span>

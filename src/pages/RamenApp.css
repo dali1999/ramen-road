@@ -21,6 +21,72 @@
   margin: 0 auto;
 }
 
+/* 배너 */
+
+.main-banner-section {
+  position: relative;
+  width: 100%;
+  height: 240px; /* 배너 높이 */
+  overflow: hidden;
+  margin-bottom: 16px;
+  margin-top: 14px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.main-banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+
+.main-banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%); /* 어두운 그라데이션 오버레이 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.main-banner-overlay h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.main-banner-overlay p {
+  font-size: 20px;
+  color: #eee;
+}
+
+/* 모바일 반응형 (RamenApp.css에 이미 있는 미디어 쿼리 안에 추가) */
+@media (max-width: 768px) {
+  .main-banner-section {
+    border-radius: 7px;
+    height: 160px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+  .main-banner-overlay h1 {
+    font-size: 24px; /* 모바일에서 글씨 크기 줄임 */
+  }
+  .main-banner-overlay p {
+    font-size: 16px;
+  }
+  /* ... (기존의 다른 모바일 스타일) ... */
+}
+
+/* 섹션 */
+
 .restaurant-wrapper {
   display: flex;
 

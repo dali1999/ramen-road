@@ -90,6 +90,12 @@ export const getVisitedRamenRestaurantById = async (restaurantId) => {
   return response.data;
 };
 
+// 방문 라멘집 수정
+export const updateVisitedRamen = async (restaurantId, payload) => {
+  const response = await api.patch(`/api/visited-ramen/${restaurantId}`, payload);
+  return response.data;
+};
+
 // 6. 멤버별 라멘집 별점 및 후기 추가/수정
 export const updateMemberRatingAndReview = async (restaurantId, visitCount, memberName, payload) => {
   const response = await api.patch(`/api/visited-ramen/${restaurantId}/visits/${visitCount}/members/${memberName}/rating`, payload);

@@ -20,20 +20,10 @@ const RecommendedRamensPage = () => {
   return (
     <div className='container'>
       <div className='restaurant-wrapper'>
-        {/* <div className='restaurant-section'>
-          <div className='restaurant-grid-title'>
-            <div>
-              <p>토벌 일정</p>
-              <p onClick={() => setIsScheduleModalOpen(true)}>일정 잡기</p>
-            </div>
-          </div>
-          <VoteCard />
-        </div> */}
-
         <div className='restaurant-section'>
           <div className='restaurant-grid-title'>
             <div>
-              <p>토벌 일정</p>
+              <p>📅 토벌 일정</p>
               <p onClick={() => setIsScheduleModalOpen(true)}>일정 잡기</p>
             </div>
           </div>

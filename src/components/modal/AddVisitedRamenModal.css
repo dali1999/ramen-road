@@ -99,13 +99,13 @@
 
 .member-checkbox-item.selected {
   border-color: #f4a261;
-  background-color: #fffaf4;
+  background-color: #faead5;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
 }
 
 .member-checkbox-item:hover {
-  background-color: #f0f0f0; /* 호버 시 배경색 변경 */
+  background-color: #f8f1e7; /* 호버 시 배경색 변경 */
 }
 
 .member-checkbox-item span {

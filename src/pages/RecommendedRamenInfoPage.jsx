@@ -23,38 +23,6 @@ const RecommendedRamenInfoPage = () => {
           <ImageWithWebp src={visitedRamenItem.bannerImageUrl} className='visited-restaurant-main-image' alt={visitedRamenItem.name} />
         </div>
       </div>
-
-      {/* 방문회차별 멤버 및 리뷰 */}
-      {/* <ul className='visited-count-list'>
-        {visitedRamenItem.visits.map((visit, idx) => (
-          <li key={`${idx}_${visit.visit_date}`} className='visited-count-item'>
-            <div className='visited-count-item-title'>#{visit.visit_count}차 습격</div>
-            <ul className='visited-count-member-list'>
-              {visit.members.map((member, idx) => (
-                <li className='visited-count-member-item' key={`${idx}_${member.name}`}>
-                  <img src={MEMBER[member.name]?.imageUrl} alt={member.name} className='visited-count-member-item-avatar' />
-                  <div className='visited-count-member-item-review'>
-                    <div>
-                      <span className='visited-count-member-item-review-name'>{member.name}</span>
-                      <p className='visited-count-member-item-review-text'>
-                        류진미만잡 류진미만잡 류진미만잡 류진미만잡 류진미만잡 류진미만잡 류진미만잡
-                      </p>
-                    </div>
-                    {member.rating ? (
-                      <span className='visited-count-member-item-review-rating'>
-                        {'★'.repeat(member.rating)}
-                        {'☆'.repeat(5 - member.rating)}
-                      </span>
-                    ) : (
-                      <span className='visited-count-member-item-review-rating none'>노별점</span>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul> */}
     </div>
   );
 };

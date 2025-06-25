@@ -14,7 +14,8 @@ const VisitedRamenCard = ({ restaurant }) => {
   const deleteVisitedRamenRestaurantById = useDeleteVisitedRamenRestaurant();
   const { user } = useAuth();
 
-  const [isReVisitedModalOpen, setIsReVisitedModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const handleDeleteClick = (e) => {
     e.stopPropagation();
@@ -27,9 +28,16 @@ const VisitedRamenCard = ({ restaurant }) => {
     navigate(`/restaurant/${id}`);
   };
 
+  const handleEditButtonClick = (e) => {
+    e.stopPropagation();
+    setIsEditMode(true);
+    setIsModalOpen(true);
+  };
+
   const handleRevisitButtonClick = (e) => {
     e.stopPropagation();
-    setIsReVisitedModalOpen(true);
+    setIsEditMode(false);
+    setIsModalOpen(true);
   };
 
   const getTagColor = (tagLabel) => {
@@ -42,9 +50,14 @@ const VisitedRamenCard = ({ restaurant }) => {
     <>
       <div className='restaurant-card' onClick={() => handleCardClick(restaurant._id)}>
         {canDelete && (
-          <div className='delete-button' onClick={handleDeleteClick}>
-            ❌
-          </div>
+          <>
+            <div className='delete-button' onClick={handleDeleteClick}>
+              ❌
+            </div>
+            <div className='edit-button' onClick={handleEditButtonClick}>
+              📝
+            </div>
+          </>
         )}
 
         <div className='restaurant-backgroundImg-wrapper'>
@@ -88,8 +101,8 @@ const VisitedRamenCard = ({ restaurant }) => {
           {restaurant.visits.map((visit) => (
             <div key={visit.visit_count} className='visit-card'>
               <div className='visit-info'>
-                <span className='visit-count'>#{visit.visit_count}차 습격</span>
                 <span className='visit-date'>{visit.visit_date}</span>
+                <span className='visit-count'>#{visit.visit_count}차 습격</span>
               </div>
 
               <div className='members'>
@@ -123,7 +136,12 @@ const VisitedRamenCard = ({ restaurant }) => {
           </button>
         </div>
       </div>
-      <AddVisitedRamenModal initialRestaurant={restaurant} isOpen={isReVisitedModalOpen} onClose={() => setIsReVisitedModalOpen(false)} />
+      <AddVisitedRamenModal
+        initialRestaurant={restaurant}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        isEditMode={isEditMode}
+      />
     </>
   );
 };
