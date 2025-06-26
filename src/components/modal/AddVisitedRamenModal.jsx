@@ -149,6 +149,13 @@ const AddVisitedRamenModal = ({ initialRestaurant = null, isOpen, onClose, isEdi
   tomorrow.setDate(tomorrow.getDate() + 1);
   const maxDate = tomorrow.toISOString().split('T')[0];
 
+  if (!user.member)
+    return (
+      <div className='modal-overlay' onClick={onClose}>
+        <div className='modal-content'>방문 라멘집을 추가하려면 로그인해야 합니다</div>
+      </div>
+    );
+
   if (isLoadingMembers)
     return (
       <div className='modal-overlay'>
