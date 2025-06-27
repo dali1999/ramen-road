@@ -23,7 +23,7 @@ const RecommendedRamensPage = () => {
         <div className='restaurant-section'>
           <div className='restaurant-grid-title'>
             <div>
-              <p>📅 토벌 일정</p>
+              <p>📅 습격 일정</p>
               <p onClick={() => setIsScheduleModalOpen(true)}>일정 잡기</p>
             </div>
           </div>

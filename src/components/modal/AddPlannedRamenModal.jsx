@@ -1,9 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useAddPlannedRamen } from '@hooks/useRamen';
+import { useAuth } from '@context/AuthContext';
+
 import './AddVisitedRamenModal.css';
 
 const AddPlannedRamenModal = ({ isOpen, onClose }) => {
   // const { data: members, isLoading: isLoadingMembers, error: membersError } = useMembers();
+  const { user } = useAuth();
+
   const addPlannedRamenMutation = useAddPlannedRamen();
 
   const DEFAULT_BANNER_IMAGE =
@@ -56,6 +60,13 @@ const AddPlannedRamenModal = ({ isOpen, onClose }) => {
     });
   };
 
+  if (!user.member)
+    return (
+      <div className='modal-overlay' onClick={onClose}>
+        <div className='modal-content'>라멘집을 추천하려면 로그인해야 합니다</div>
+      </div>
+    );
+
   return (
     <div className='modal-overlay' onClick={onClose}>
       <div className='modal-content' onClick={(e) => e.stopPropagation()}>
@@ -70,17 +81,6 @@ const AddPlannedRamenModal = ({ isOpen, onClose }) => {
             <label htmlFor='location'>위치:</label>
             <input type='text' id='location' value={location} onChange={(e) => setLocation(e.target.value)} required />
           </div>
-
-          {/* <div className='form-group'>
-            <label htmlFor='image'>이미지 주소:</label>
-            <input
-              type='text'
-              id='image'
-              value={bannerImageUrl}
-              onChange={(e) => setBannerImageUrl(e.target.value)}
-              placeholder='이미지가 없을 시 기본 이미지가 들어갑니다'
-            />
-          </div> */}
 
           <div className='form-group'>
             <label htmlFor='plannedBannerImage'>라멘집 메인 사진:</label>

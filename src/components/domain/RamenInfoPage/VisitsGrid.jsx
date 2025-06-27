@@ -121,9 +121,6 @@ const VisitsGrid = ({ user, id }) => {
                         ) : (
                           <p className='member-review-text none'>후기가 없습니다</p>
                         )}
-                        {/* <span className={`member-rating ${member.rating === null ? 'no-rating' : ''}`}>
-                          {member.rating !== null ? renderStarRating(member.rating) : '별점 없음'}
-                        </span> */}
 
                         <div className={`member-rating ${member.rating === null ? 'no-rating' : ''}`}>
                           {member.rating !== null ? <StarRating rating={member.rating} /> : '별점 없음'}

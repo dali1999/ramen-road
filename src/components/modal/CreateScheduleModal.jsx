@@ -5,7 +5,7 @@ import './CreateScheduleModal.css';
 
 const CreateScheduleModal = ({ isOpen, onClose }) => {
   const { data: plannedRamenList, isLoading: isLoadingPlanned, error: plannedError } = usePlannedRamenRestaurants();
-  const { user } = useAuth(); // 현재 로그인한 사용자 정보 (주최자)
+  const { user } = useAuth();
   const createScheduleMutation = useCreateSchedule();
 
   const [selectedPlannedRamenId, setSelectedPlannedRamenId] = useState('');
@@ -63,7 +63,7 @@ const CreateScheduleModal = ({ isOpen, onClose }) => {
     );
   if (plannedError)
     return (
-      <div className='modal-overlay'>
+      <div className='modal-overlay' onClick={onClose}>
         <div className='modal-content' style={{ color: 'red' }}>
           추천 라멘집 로드 오류: {plannedError.message}
         </div>
@@ -71,10 +71,8 @@ const CreateScheduleModal = ({ isOpen, onClose }) => {
     );
   if (!user.member)
     return (
-      <div className='modal-overlay'>
-        <div className='modal-content' style={{ color: 'red' }}>
-          일정을 생성하려면 로그인해야 합니다.
-        </div>
+      <div className='modal-overlay' onClick={onClose}>
+        <div className='modal-content'>일정을 생성하려면 로그인해야 합니다.</div>
       </div>
     );
 

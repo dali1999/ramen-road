@@ -82,6 +82,8 @@
   line-height: 1.5;
   margin-bottom: 8px;
   text-align: left;
+
+  white-space: pre-wrap;
 }
 
 .member-review-text.none {
