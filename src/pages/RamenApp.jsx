@@ -21,7 +21,6 @@ const RamenApp = () => {
   const [isPlannedModalOpen, setIsPlannedModalOpen] = useState(false);
 
   const latestRamen = visitedRamenList && visitedRamenList.length > 0 ? visitedRamenList[0] : null;
-  console.log(latestRamen);
 
   const handleBannerClick = () => {
     if (latestRamen) {
@@ -46,7 +45,7 @@ const RamenApp = () => {
       </section>
 
       <div className='restaurant-wrapper'>
-        <div className='restaurant-section'>
+        {/* <div className='restaurant-section'>
           <div className='restaurant-grid-title'>
             <div>
               <p>📅 습격 일정</p>
@@ -59,7 +58,7 @@ const RamenApp = () => {
             ))}
             {schedules?.length === 0 && <p className='no-schedules-message'>아직 등록된 라멘로드 일정이 없습니다.</p>}
           </div>
-        </div>
+        </div> */}
 
         <div className='restaurant-section visited'>
           <div className='restaurant-grid-title visited'>

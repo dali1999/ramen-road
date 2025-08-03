@@ -20,7 +20,7 @@ const RecommendedRamensPage = () => {
   return (
     <div className='container'>
       <div className='restaurant-wrapper'>
-        <div className='restaurant-section'>
+        {/* <div className='restaurant-section'>
           <div className='restaurant-grid-title'>
             <div>
               <p>📅 습격 일정</p>
@@ -33,7 +33,7 @@ const RecommendedRamensPage = () => {
             ))}
             {schedules?.length === 0 && <p className='no-schedules-message'>아직 등록된 라멘로드 일정이 없습니다.</p>}
           </div>
-        </div>
+        </div> */}
 
         <div className='restaurant-section'>
           <div className='restaurant-grid-title'>

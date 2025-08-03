@@ -75,6 +75,7 @@ const MyPage = () => {
       await updateMyProfileMutation.mutateAsync(formData);
       setIsEditing(false);
       setProfileImageFile(null);
+      console.log(formData);
       refetch();
     } catch (err) {
       console.error('회원 정보 수정 실패:', err);
@@ -179,7 +180,6 @@ const MyPage = () => {
                   <div className='my-visits-summary'>
                     <h5>나의 방문 기록 ({restaurant.myVisits.length}회)</h5>
                     <ul>
-                      {console.log(restaurant)}
                       {restaurant.myVisits.map((myVisit) => (
                         <li key={myVisit.visit_count}>
                           #{myVisit.visit_count}차 방문 ({new Date(myVisit.visit_date).toLocaleDateString('ko-KR')})

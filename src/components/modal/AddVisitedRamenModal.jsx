@@ -12,7 +12,6 @@ const AddVisitedRamenModal = ({ initialRestaurant = null, isOpen, onClose, isEdi
   const { data: members, isLoading: isLoadingMembers, error: membersError } = useMembers();
   const addVisitedRamenMutation = useAddVisitedRamen();
   const updateVisitedRamenMutation = useUpdateVisitedRamen();
-  console.log(initialRestaurant?.images);
 
   // --- 폼 상태 관리 ---
   const [name, setName] = useState(initialRestaurant ? initialRestaurant.name : '');

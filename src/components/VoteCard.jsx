@@ -23,8 +23,7 @@ const VoteCard = ({ schedule }) => {
   const participants = schedule.participants || [];
 
   // 현재 유저가 참여자인지 확인
-  const isUserParticipant = user.member && participants.some((p) => p.member._id === user.member._id);
-  // const isUserOrganizer = user.member && schedule.organizer._id === user.member._id;
+  const isUserParticipant = user.member && participants?.some((p) => p.member && p.member._id === user.member._id);
 
   const handleCardClick = (id) => {
     console.log('일정 카드 클릭:', id);
@@ -88,8 +87,8 @@ const VoteCard = ({ schedule }) => {
             참여자<span>{participants.length}</span>명
           </div>
           <div className='participants-avatars'>
-            {participants.map((p, index) => (
-              <div key={p.member._id} className='participant-avatar-wrapper' style={{ zIndex: participants.length + index }}>
+            {participants?.map((p, index) => (
+              <div key={p?.member?._id} className='participant-avatar-wrapper' style={{ zIndex: participants.length + index }}>
                 <UserProfileImage user={p.member} size={44} />
               </div>
             ))}
